@@ -26,7 +26,8 @@
       {
         "capability": "shell",
         "effect": "deny",
-        "match": ["*"]
+        "match": ["*"],
+        "exclude": ["git diff*", "git status*", "git log*", "git show*", "git rev-parse*"]
       }
     ]
   }
