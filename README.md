@@ -42,6 +42,7 @@ Representative skills include:
 - `technical-writing` and `unslop` for prose.
 - `comment-sicko` for independent comment review.
 - `triage-issue-reports` and `reproduce-and-fix-issues` for the portable Benny workflow contracts.
+- `sync-pstack-upstream` for reviewing and porting parent changes without overwriting portable or Kiro adaptations.
 
 The full guide remains under [`docs/guide/`](./docs/guide/). Client-specific examples in the upstream guide should be interpreted through the Kiro runtime mapping. The pinned source and extraction history are recorded in [`docs/upstream.md`](./docs/upstream.md).
 
