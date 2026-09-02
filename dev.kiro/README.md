@@ -28,6 +28,8 @@ kiro-cli chat --v3 --agent pstack-poteto
 
 The profiles use `includePowers: true`, so install the pstack Power before starting them.
 
+Both profiles declare tool access with a `permissions.rules` block rather than the older `allowedTools` list. The Kiro CLI v3 agent engine (KAS) treats a JSON profile that has `allowedTools` or `toolsSettings` but no `permissions` block as CLI-only: it silently falls back to the default agent, hides the profile from `/agent`, and logs `agent "<name>" needs upgrading for this agent engine`. If you customize a profile, keep `permissions` present (or run `/upgrade-agent <name>` inside a v3 session to convert it).
+
 ## Model routing
 
 Invoke the `setup-pstack` skill. On Kiro it lists entitled models and writes `.kiro/steering/pstack-models.md`. Model IDs are machine-specific and are not bundled.

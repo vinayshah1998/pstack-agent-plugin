@@ -6,5 +6,32 @@
   "includeMcpJson": true,
   "includePowers": true,
   "tools": ["read", "write", "shell", "glob", "grep", "subagent", "web_fetch", "web_search"],
-  "allowedTools": ["read", "glob", "grep", "web_fetch", "web_search"]
+  "permissions": {
+    "rules": [
+      {
+        "capability": "fs_read",
+        "effect": "allow"
+      },
+      {
+        "capability": "web_fetch",
+        "effect": "allow"
+      },
+      {
+        "capability": "web_search",
+        "effect": "allow"
+      },
+      {
+        "capability": "fs_write",
+        "effect": "ask"
+      },
+      {
+        "capability": "shell",
+        "effect": "ask"
+      },
+      {
+        "capability": "subagent",
+        "effect": "ask"
+      }
+    ]
+  }
 }
