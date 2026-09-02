@@ -14,6 +14,14 @@ Future upstream updates should repeat the classification and validation steps in
 
 ## Sync log
 
+### 23a56e2 (0.14.6), re-reviewed after the port
+
+The fork was split at this commit, so its forge-neutral playbooks, watch stop conditions, GitHub merge completion, and TypeScript schema rule arrived verbatim. Its Fable 5.1 default bumps landed on skills the port had already converted to role dispatch. Remaining raw model slugs were then adapted:
+
+- `playbooks/bug-fix.md`, `perf-issue.md`, `hillclimb.md`, `feature.md`, `refactoring.md`, `multi-phase-plan.md`, `scripts/check-plan.mjs`: adapt. Replaced Cursor model slugs with `setup-pstack` role names.
+- `skills/setup-pstack/SKILL.md`: adapt. Added the parent's model-strength split as role guidance with Kiro IDs.
+- `.cursor-plugin/plugin.json`, `typescript-best-practices` `paths` frontmatter: skip. Cursor-only fields.
+
 ### 23a56e2 to efa2a53 (0.14.6 to 0.14.7)
 
 - `.cursor-plugin/plugin.json`: skip. Adds the Cursor-only `logo` field. The Agent Plugins 1.0 manifest schema has no logo field.

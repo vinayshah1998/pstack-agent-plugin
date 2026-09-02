@@ -38,6 +38,14 @@ Map these roles to an available model or named agent:
 
 Use multiple entries only when the host can dispatch them independently. Keep `auto` as a valid fallback meaning the active host chooses. Do not translate Cursor suffixes such as `-thinking-max`, `-fast-xhigh`, or `-sol-max` into Kiro IDs.
 
+The parent pstack splits work by model strength. Follow the same shape with Kiro IDs:
+
+- Judgment, prose, bug fix, performance investigation, and explanation go to the strongest reasoning model available.
+- Feature and refactoring code, code exploration, and swarm workers go to a fast code model.
+- Adversarial, arena, and architecture panels take one entry per distinct model family.
+
+Read each model's description in the list output before assigning it. Some experimental models carry traffic-retention or human-review notes. Assign such a model only when the user accepts that handling for the role's inputs.
+
 ## 4. Validate
 
 Every explicit model must occur in the detected Kiro model list. Every named agent must validate with `kiro-cli agent validate`. Replace unavailable entries with `auto` or another confirmed identifier.
