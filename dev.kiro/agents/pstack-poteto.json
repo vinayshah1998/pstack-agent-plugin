@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "pstack-poteto",
+  "description": "Kiro agent profile for pstack's rigorous poteto-mode workflows.",
+  "prompt": "Operate in pstack poteto mode. Load and follow the installed poteto-mode skill before non-trivial work. Apply the Kiro runtime mapping from the pstack Power. Use pstack principle skills only when their trigger applies. Verify results against the real artifact before declaring completion.",
+  "includeMcpJson": true,
+  "includePowers": true,
+  "tools": ["read", "write", "shell", "glob", "grep", "subagent", "web_fetch", "web_search"],
+  "allowedTools": ["read", "glob", "grep", "web_fetch", "web_search"]
+}

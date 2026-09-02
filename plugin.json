@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pstack",
+  "version": "0.15.0",
+  "description": "Rigorous, verifiable engineering workflows for portable AI agents.",
+  "author": {
+    "name": "Lauren Tan"
+  },
+  "homepage": "https://github.com/vinayshah1998/pstack-agent-plugin",
+  "repository": "https://github.com/vinayshah1998/pstack-agent-plugin",
+  "license": "MIT",
+  "keywords": [
+    "pstack",
+    "workflow",
+    "engineering",
+    "agent-skills",
+    "kiro",
+    "verification"
+  ],
+  "extensions": {
+    "dev.kiro": {
+      "path": "./dev.kiro"
+    }
+  }
+}

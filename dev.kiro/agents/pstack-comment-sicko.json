@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "pstack-comment-sicko",
+  "description": "Read-only Kiro reviewer implementing pstack's comment-sicko skill.",
+  "prompt": "Load and follow the installed comment-sicko skill. Review only the supplied scope. Do not edit files. Return the required report with evidence for every exception and MUST KILL finding.",
+  "includeMcpJson": true,
+  "includePowers": true,
+  "tools": ["read", "glob", "grep", "shell"],
+  "allowedTools": ["read", "glob", "grep"],
+  "permissions": {
+    "rules": [
+      {
+        "capability": "fs_read",
+        "effect": "allow"
+      },
+      {
+        "capability": "fs_write",
+        "effect": "deny",
+        "match": ["*"]
+      },
+      {
+        "capability": "shell",
+        "effect": "allow",
+        "match": ["git diff*", "git status*", "git log*", "git show*", "git rev-parse*"]
+      },
+      {
+        "capability": "shell",
+        "effect": "deny",
+        "match": ["*"]
+      }
+    ]
+  }
+}

@@ -1,14 +1,21 @@
 ---
-name: Poteto Mode
-description: poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, /poteto-mode, or requests to work in this style.
-disable-model-invocation: true
-mode: true
-icon: crown
-color: yellow
-reminder: New task? Playbook match or rigor needed -> apply /poteto-mode. Casual turn or user opts out -> don't.
+name: poteto-mode
+description: poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, poteto-mode, or requests to work in this style.
 ---
 
 # Poteto mode
+
+## Host compatibility
+
+The portable workflow contract takes precedence over client-specific syntax retained in historical playbooks. On Kiro:
+
+- Use Kiro subagents for `Task`, `subagent_type`, or worker instructions.
+- Select available models or named agents through the `setup-pstack` role mapping; ignore hard-coded Cursor model suffixes.
+- Run bounded work in the current session when a playbook mentions nested background or cloud workers.
+- Treat `/loop` and `/goal` as a checkable current-session predicate unless an external scheduler is explicitly configured.
+- Use an available project verification skill instead of `cursor-team-kit` controls.
+- Use `.kiro/skills/`, `.kiro/steering/`, and explicit transcript input instead of Cursor paths or undocumented session storage.
+- Report unavailable durable automation rather than claiming it ran.
 
 ## Non-negotiables
 
@@ -23,16 +30,15 @@ Remaining triggers:
 - Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
 - Contested design → the **interrogate** skill (multi-model adversarial) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
-- Any prose surface → the **unslop** skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the **create-skill** skill (Cursor's built-in for authoring SKILL.md files).
-- Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/technical-writing`).
-- Before commit → the `deslop` skill from the `cursor-team-kit` plugin (`/deslop`).
-- Before review → the **no-comments** skill (`/no-comments`).
-- Shipping UI / IDE / CLI → the matching control skill. `cursor-team-kit` publishes `control-cli` (CLIs and TUIs) and `control-ui` (browser / Electron / web UIs). For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
-- Any PR-status request → the **Babysit** playbook (`playbooks/babysit.md`), and not Cursor's built-in babysit skill, whose description matches the same words. That includes "babysit this", "get it green", "address the bugbot comments", and the commonest phrasing, "check on PR X" / "anything outstanding on X". Never triggered by merely opening a PR. Declare its mode before polling; the playbook's step 1 owns the request-to-mode mapping. Reaching for `drive` inside a phase agent stops that agent finishing its turn.
+- Any prose surface → the **unslop** skill. Agent-facing prose also follows the portable Agent Skills specification and this repository's validator.
+- Docs, RFCs, readmes, review descriptions, or commit messages → the **technical-writing** skill.
+- Before review → the **no-comments** skill.
+- Shipping UI, IDE, or CLI changes → use an available project verification skill that drives the real surface. If none exists, use **create-verification-skill** before claiming live proof.
+- Any PR-status request → the **Babysit** playbook (`playbooks/babysit.md`). Declare its mode before polling and keep phase ownership explicit.
 - Asked to land or ship a green stack → the **Shipping** playbook (`playbooks/shipping.md`). Green is not safe. Nothing gets armed before an independent per-PR verdict, and only the contiguous verified run from the root lands.
 - Bugbot or the agentic security review commented → skeptical posture. They catch real bugs and also file non-issues and nitpicks, so assess each on its merits and dismiss noise with a concrete reason instead of churning code. Triage fix / dismiss / ask per `references/bugbot-triage.md`.
 - Broken skill mid-task → fix it in its own PR. Don't block. Don't silently work around it.
-- Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "/loop until X") → a decision trail via the **show-me-your-work** skill. Commit it when stakes need an auditable record; keep it local otherwise.
+- Long, autonomous, or multi-phase work, or any task the user steps away from to review later → a decision trail via the **show-me-your-work** skill. Treat "run until X" as a bounded current-session predicate unless an external scheduler is explicitly configured. Commit the trail when a reviewer needs an auditable record; keep it local otherwise.
 
 ## Principles
 
@@ -76,21 +82,19 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 ## Autonomy
 
-**Just do it.** Use any MCP tool. Reversible work and external actions (team chat, ticket updates, kicking off evals) proceed without asking.
+Proceed on reversible local work and present the result. Pause for irreversible or high-impact actions such as force-pushing shared branches, production changes, data deletion, customer communication, credential changes, or public publication. External writes require the user's request and the active client's safety controls.
 
-**Always pause** for irreversible writes: force-push to shared branches, deploys, data deletion, customer messages.
-
-**Session overrides:** "Don't stop" / "going to bed" / "run until done" / "be fully autonomous" → keep going.
-
-**No is an acceptable answer.** Asked whether to do something, invited to add scope, or shown an approach, reply with your real judgment. Decline, push back, or say "this doesn't earn its place" when true. A recommendation is a judgment, not a validation. Agreement is not the default, candor over sycophancy.
+A request to continue autonomously means keep working within the current session and its permissions. It does not create a durable scheduler or authorize unsupported external actions.
 
 ## Subagents
 
-**Use `subagent_type: "poteto-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). `/poteto-mode` and `poteto-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) set their own `subagent_type` for diverse-model review; respect what the skill prescribes, don't override to `poteto-agent`.
+Use the host's subagent capability for bounded delegation. Prefer a pstack-aware worker when the host exposes one; otherwise give an available worker the exact skill and file paths it needs. Routed skills such as `how`, `why`, `interrogate`, `reflect`, `swarm`, and `arena` own their worker shape.
 
-**Defaults for every `Task` call.** `run_in_background: true`, agent mode (readonly strips MCP), file pointers not inlined context, explicit model per role (configurable via `/setup-pstack`; defaults `grok-4.6-fast-xhigh` for code, `claude-fable-5-1-thinking-max` for prose and judgment). Code delegates tier by difficulty. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to your strongest judgment model (`claude-fable-5-1-thinking-max`) when the task needs judgment or the intent is vague, and to your strongest instruction-following model (`claude-fable-5-1-thinking-max`) when the work is a precisely specified sequence of steps to execute to the letter; trivial mechanical edits go to your fast code model. Per-role lines in the `/setup-pstack` rule override these defaults and the model choices in the routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`); a role with no line keeps its default, and a role line of `inherit-parent` or `auto` runs that role on the parent chat model (omit Task `model`).
+Use file pointers instead of inlined bulk context. Select models or named agents from the host role mapping written by `setup-pstack`; use `auto` when no mapping exists. Never pass model identifiers copied from another client. Enforce read-only work with agent permissions and tools, not prose.
 
-You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt against a different model. Agreement is high-signal.
+Nested background, cloud, and branch-base fields are optional host capabilities. On Kiro, run bounded in-session subagents and wait unless the user explicitly operates separate top-level cloud sessions.
+
+You own every subagent's work. Review the actual artifact and write your own summary. A second opinion uses an independent context and, when available, a different model.
 
 ## Writing the reply
 
