@@ -1,0 +1,36 @@
+name: Fast-forward main from sync/upstream
+
+# The daily upstream sync job pushes a rebased, validated commit to
+# `sync/upstream`. This workflow promotes that commit to `main` with a
+# fast-forward-only ref update (force=false on the Git refs API), so a
+# `main` that moved independently is never overwritten: the update fails,
+# the next sync rebases onto the new `main`, and the following push
+# succeeds. No PR is opened; the sync commit itself is the record.
+
+on:
+  push:
+    branches:
+      - sync/upstream
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fast-forward-main
+  cancel-in-progress: false
+
+jobs:
+  fast-forward:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fast-forward main to the pushed commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          gh api --method PATCH \
+            "repos/${GITHUB_REPOSITORY}/git/refs/heads/main" \
+            -f sha="${TARGET_SHA}" \
+            -F force=false \
+            --jq '.object.sha'
