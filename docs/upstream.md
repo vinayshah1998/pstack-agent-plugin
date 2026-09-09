@@ -14,6 +14,17 @@ The standalone repository was created with `git subtree split --prefix=pstack`, 
 
 Future upstream updates should repeat the classification and validation steps in `agent-sops/port-cursor-plugin-to-agent-plugin.sop.md`; do not blindly merge the monorepo subtree because Cursor-only metadata and runtime assumptions must remain outside the portable core. Use the `sync-pstack-upstream` skill to compare the pinned commit with the current parent.
 
+## Path mapping
+
+Parent paths land at the same fork path except for these renames. Apply them before every merge, and rewrite skill-name references (`**tdd**`, `` `/tdd` ``, `skills/tdd/`) in ported prose to the fork name.
+
+| Parent path | Fork path | Reason |
+|---|---|---|
+| `skills/tdd/` | `skills/pstack-tdd/` | Name collision with a differently scoped `tdd` skill users already install; the parent's is a bug-fix regression ritual, not a TDD methodology. |
+| `skills/teach/` | `skills/pstack-teach/` | Name collision with a differently scoped `teach` skill (tutoring workspace); the parent's is a one-shot explanation over `how` and `why`. |
+
+The frontmatter `name` in each renamed skill equals the fork directory, as Agent Skills requires.
+
 ## Sync log
 
 ### 23a56e2 (0.14.6), re-reviewed after the port

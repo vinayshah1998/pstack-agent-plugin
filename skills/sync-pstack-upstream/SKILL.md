@@ -60,7 +60,7 @@ Stop when the state is `up-to-date`. If the checker fails, fix the reported repo
 
 ## Port every changed path
 
-Review the patch for every path in `changes`. Record one disposition for each path:
+Review the patch for every path in `changes`. Map each parent path to its fork path with the Path mapping table in `docs/upstream.md` before reading or merging; a renamed skill keeps its parent content but carries the fork's directory and frontmatter `name`. Record one disposition for each path:
 
 - `port` preserves host-neutral behavior.
 - `adapt` preserves intent through a portable or client mechanism.

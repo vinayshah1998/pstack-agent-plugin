@@ -38,7 +38,7 @@ Representative skills include:
 - `architect` and `arena` for competing designs.
 - `swarm` for partitioned parallel work.
 - `interrogate` for adversarial review.
-- `tdd`, `blast-radius`, and `no-comments` for implementation quality.
+- `pstack-tdd`, `blast-radius`, and `no-comments` for implementation quality.
 - `technical-writing` and `unslop` for prose.
 - `comment-sicko` for independent comment review.
 - `triage-issue-reports` and `reproduce-and-fix-issues` for the portable Benny workflow contracts.
