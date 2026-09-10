@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `71ed0d1076fec562c1b74ee353121a8d00f75382`
-- Source plugin version: `0.15.0`
+- Source commit: `f8abeddd1862dc73704e3d719dd73df0d51b8c71`
+- Source plugin version: `0.15.1`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.0`
+- Portable plugin version: `0.15.1`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -52,3 +52,8 @@ Four parent commits: a logo shrink, a density and mannered-prose pass across eve
 - `.cursor-plugin/plugin.json`, `assets/logo.png`: skip. Cursor-only manifest and logo.
 
 Known gap carried forward, not introduced here: eight skill files still name `~/.cursor/` transcript and skill paths (`recall`, `show-me-your-work`, three `reflect` references, three `poteto-mode` playbooks). Present since the initial port; a Kiro transcript mapping is a follow-up adaptation.
+
+### 71ed0d1 to f8abedd (0.15.0 to 0.15.1)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version; the portable `plugin.json` mirrors that version through the Agent Plugins manifest.
+- `skills/poteto-mode/SKILL.md`: adapt. Added the parent's rule that every claim carries evidence or an explicit label, while preserving the fork's Kiro runtime mapping and portable Agent Skills frontmatter.
