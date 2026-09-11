@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `f8abeddd1862dc73704e3d719dd73df0d51b8c71`
-- Source plugin version: `0.15.1`
+- Source commit: `f5bdd6826fd0a0d9cbc4347134c3a74a200b9d9d`
+- Source plugin version: `0.15.2`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.1`
+- Portable plugin version: `0.15.2`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -57,3 +57,11 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 
 - `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version; the portable `plugin.json` mirrors that version through the Agent Plugins manifest.
 - `skills/poteto-mode/SKILL.md`: adapt. Added the parent's rule that every claim carries evidence or an explicit label, while preserving the fork's Kiro runtime mapping and portable Agent Skills frontmatter.
+
+### f8abedd to f5bdd68 (0.15.1 to 0.15.2)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version; the portable `plugin.json` mirrors that version through the Agent Plugins manifest.
+- `skills/poteto-mode/playbooks/autopilot-full.md`: adapt. Removed gendered operator references while preserving the fork's project-verification and external-scheduler fallbacks.
+- `skills/poteto-mode/playbooks/autopilot-stack.md`: adapt. Removed gendered operator references while preserving host-agent dispatch and the fork's external-scheduler fallback.
+- `skills/poteto-mode/playbooks/multi-phase-plan.md`: adapt. Removed gendered operator references and made the periodic chat destination explicit while preserving Kiro paths and runtime fallbacks.
+- `skills/poteto-mode/SKILL.md`: adapt. Updated the Autopilot-stack summary to use neutral operator language while preserving the fork's Kiro runtime mapping.
