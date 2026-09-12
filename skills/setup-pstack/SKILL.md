@@ -46,8 +46,8 @@ Use multiple entries only when the host can dispatch them independently. Keep `a
 
 The parent pstack splits work by model strength. Follow the same shape through role assignments:
 
-- Judgment, prose, bug fix, performance investigation, and explanation go to the strongest reasoning model available.
-- Feature and refactoring code, code exploration, and swarm workers go to a fast code model.
+- Judgment, prose, and explanation go to the strongest reasoning model available.
+- Feature and refactoring code, bug fix, performance investigation, code exploration, and swarm workers go to a fast code model.
 - Adversarial, arena, and architecture panels take one entry per distinct model family.
 
 Read each model's description in the list output before assigning it. Some experimental models carry traffic-retention or human-review notes. Assign such a model only when the user accepts that handling for the role's inputs.

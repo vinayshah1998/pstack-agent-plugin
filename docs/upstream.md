@@ -2,7 +2,7 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `f5bdd6826fd0a0d9cbc4347134c3a74a200b9d9d`
+- Source commit: `889ec4b68fa5aab0e867dad71ec3fdf386ae48f3`
 - Source plugin version: `0.15.2`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
 - Portable plugin version: `0.15.2`
@@ -65,3 +65,11 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/poteto-mode/playbooks/autopilot-stack.md`: adapt. Removed gendered operator references while preserving host-agent dispatch and the fork's external-scheduler fallback.
 - `skills/poteto-mode/playbooks/multi-phase-plan.md`: adapt. Removed gendered operator references and made the periodic chat destination explicit while preserving Kiro paths and runtime fallbacks.
 - `skills/poteto-mode/SKILL.md`: adapt. Updated the Autopilot-stack summary to use neutral operator language while preserving the fork's Kiro runtime mapping.
+
+### f5bdd68 to 889ec4b (0.15.2 to 0.15.2)
+
+- `README.md`: skip. The parent changes Cursor model-default prose that the fork's independent README does not carry.
+- `skills/poteto-mode/playbooks/bug-fix.md`: adapt. The existing `bug fix` role preserves the parent model-routing change without copying a Cursor model slug.
+- `skills/poteto-mode/playbooks/hillclimb.md`: adapt. The existing `performance investigation` role preserves the parent model-routing change without copying a Cursor model slug.
+- `skills/poteto-mode/playbooks/perf-issue.md`: adapt. The existing `performance investigation` role preserves the parent model-routing change without copying a Cursor model slug.
+- `skills/setup-pstack/SKILL.md`: adapt. Moved bug-fix and performance work from strongest-reasoning guidance to fast-code guidance while preserving detected Kiro model and named-agent routing.
