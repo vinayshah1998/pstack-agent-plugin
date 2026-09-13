@@ -2,7 +2,7 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `889ec4b68fa5aab0e867dad71ec3fdf386ae48f3`
+- Source commit: `5bf2b1544db739998121a306340631963c2ff3de`
 - Source plugin version: `0.15.2`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
 - Portable plugin version: `0.15.2`
@@ -73,3 +73,9 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/poteto-mode/playbooks/hillclimb.md`: adapt. The existing `performance investigation` role preserves the parent model-routing change without copying a Cursor model slug.
 - `skills/poteto-mode/playbooks/perf-issue.md`: adapt. The existing `performance investigation` role preserves the parent model-routing change without copying a Cursor model slug.
 - `skills/setup-pstack/SKILL.md`: adapt. Moved bug-fix and performance work from strongest-reasoning guidance to fast-code guidance while preserving detected Kiro model and named-agent routing.
+
+### 889ec4b to 5bf2b15 (0.15.2 to 0.15.2)
+
+- `docs/guide/01-setup.md`: adapt. Added the reasoning-budget step while documenting Kiro's independent reasoning-effort control.
+- `README.md`: adapt. Added reasoning-effort routing to the independent fork's equivalent setup instruction.
+- `skills/setup-pstack/SKILL.md`: adapt. Added the parent's budget choices while storing Kiro reasoning effort separately from validated model or named-agent identifiers.

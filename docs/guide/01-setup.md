@@ -1,6 +1,6 @@
 # Set up pstack
 
-In this page you install the plugin, pick which models pstack uses, and run your first task. Setup is one command plus a short conversation.
+In this page you install the plugin, choose a reasoning budget, pick which models pstack uses, and run your first task. Setup is one command plus a short conversation.
 
 ## Install the plugin
 
@@ -12,7 +12,7 @@ In a Cursor chat, run:
 
 Cursor confirms the plugin is installed.
 
-## Pick your models
+## Pick your budget and models
 
 Run:
 
@@ -20,7 +20,7 @@ Run:
 /setup-pstack
 ```
 
-[`setup-pstack`](../../skills/setup-pstack/SKILL.md) detects Kiro models available to the current account, maps pstack roles to validated model or agent identifiers, and writes `.kiro/steering/pstack-models.md`. Other Agent Plugins clients use their supported model discovery and configuration mechanism.
+[`setup-pstack`](../../skills/setup-pstack/SKILL.md) asks for a reasoning budget, detects Kiro models available to the current account, maps pstack roles to validated model or agent identifiers, and writes `.kiro/steering/pstack-models.md`. The budget maps to Kiro's independent reasoning-effort control, so it does not change model identifiers. Other Agent Plugins clients use their supported model discovery and configuration mechanism.
 
 You only override what you care about. A role with no line in the rule keeps the skill's default. To restore a default later, delete that role's line, or just run `/setup-pstack` again.
 
@@ -32,7 +32,7 @@ At the end of setup, `/setup-pstack` looks for a way to prove app behavior in yo
 
 Say yes and it writes `.kiro/skills/verify-<app>/`, a project-local skill that teaches agents to drive your app the way a user does. It proves the skill works once before handing it over. Say no and setup moves on. You can run `create-verification-skill` yourself any time. [Verify and ship](./06-verify-and-ship.md#create-a-project-verification-skill) covers when it earns its place.
 
-After setup, start a new chat. The model rule applies to new sessions.
+After setup, start a new chat. The role map and reasoning budget apply to new sessions.
 
 ## Run your first task
 

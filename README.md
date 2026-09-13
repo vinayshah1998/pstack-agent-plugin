@@ -23,7 +23,7 @@ Agent Plugins standardizes the manifest, Agent Skills, and optional MCP configur
 2. Import this repository from GitHub or select the local repository root.
 3. Start Kiro CLI v3 and run `/powers` to confirm `pstack` is installed.
 4. Ask Kiro to use `poteto-mode`, or install the optional `pstack-poteto` agent profile from [`dev.kiro/README.md`](./dev.kiro/README.md).
-5. Run the `setup-pstack` skill if you want explicit Kiro model or named-agent routing.
+5. Run the `setup-pstack` skill if you want explicit Kiro model, named-agent, or reasoning-effort routing.
 
 Kiro agent profile installation, validation commands, runtime mappings, and unsupported hosted automation behavior are documented in [`dev.kiro/README.md`](./dev.kiro/README.md).
 
