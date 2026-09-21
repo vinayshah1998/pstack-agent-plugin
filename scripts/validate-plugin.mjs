@@ -138,6 +138,15 @@ for (const legacyRoot of [".cursor-plugin", "agents", "automations"]) {
   }
 }
 
+const potetoProfile = await readJson(join(root, "dev.kiro", "agents", "pstack-poteto.json"));
+if (potetoProfile && (
+  !Object.hasOwn(potetoProfile, "allowedTools") ||
+  !Array.isArray(potetoProfile.allowedTools) ||
+  potetoProfile.allowedTools.length !== 0
+)) {
+  fail("dev.kiro/agents/pstack-poteto.json: explicit allowedTools: [] is required for kiro-cli 2.22.1 discovery compatibility");
+}
+
 if (errors.length > 0) {
   for (const error of errors) process.stderr.write(`ERROR ${error}\n`);
   process.stderr.write(`Validation failed with ${errors.length} error(s).\n`);
