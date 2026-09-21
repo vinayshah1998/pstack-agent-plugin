@@ -6,6 +6,7 @@
   "includeMcpJson": true,
   "includePowers": true,
   "tools": ["read", "write", "shell", "glob", "grep", "subagent", "web_fetch", "web_search"],
+  "allowedTools": [],
   "permissions": {
     "rules": [
       {
