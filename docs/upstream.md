@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `5bf2b1544db739998121a306340631963c2ff3de`
-- Source plugin version: `0.15.2`
+- Source commit: `70b2dc8b4b85c8d5648624ca40d692c421fff32f`
+- Source plugin version: `0.15.3`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.2`
+- Portable plugin version: `0.15.3`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -79,3 +79,21 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `docs/guide/01-setup.md`: adapt. Added the reasoning-budget step while documenting Kiro's independent reasoning-effort control.
 - `README.md`: adapt. Added reasoning-effort routing to the independent fork's equivalent setup instruction.
 - `skills/setup-pstack/SKILL.md`: adapt. Added the parent's budget choices while storing Kiro reasoning effort separately from validated model or named-agent identifiers.
+
+### 5bf2b15 to 70b2dc8 (0.15.2 to 0.15.3)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.3` through the Agent Plugins manifest.
+- `README.md`: skip. The parent changes client model defaults and a table the fork's independent README does not carry. Portable setup migration guidance lives in `docs/guide/01-setup.md`, and the autopilot behavior lives in the playbooks.
+- `docs/guide/01-setup.md`: adapt. Added the pre-0.15.3 role-map migration note without copying client model names.
+- `docs/guide/07-overnight.md`: port. Swarm verification now starts at the code-ready head and repeats after each patch-changing push.
+- `skills/blast-radius/SKILL.md`, `skills/figure-it-out/SKILL.md`, `skills/how/references/explorer-prompt.md`, `skills/poteto-mode/playbooks/feature.md`, `skills/principle-prove-it-works/SKILL.md`, `skills/principle-sequence-verifiable-units/SKILL.md`, `skills/show-me-your-work/scripts/log.sh`, `skills/technical-writing/SKILL.md`, `skills/unslop/SKILL.md`: port. Took the parent's prose reductions, workflow tightening, and append-safe log header.
+- `skills/tdd/SKILL.md` to `skills/pstack-tdd/SKILL.md`: port. Applied the parent workflow reduction through the fork's collision-safe skill name.
+- `skills/architect/SKILL.md`, `skills/arena/SKILL.md`, `skills/how/SKILL.md`, `skills/interrogate/SKILL.md`, `skills/poteto-mode/playbooks/hillclimb.md`, `skills/poteto-mode/playbooks/perf-issue.md`, `skills/poteto-mode/playbooks/refactoring.md`, `skills/reflect/SKILL.md`, `skills/setup-pstack/SKILL.md`, `skills/why/SKILL.md`: adapt. The existing `setup-pstack` roles preserve the parent model-routing intent without client model identifiers, so these files need no byte change.
+- `skills/poteto-mode/playbooks/autopilot-full.md`, `skills/poteto-mode/playbooks/autopilot-stack.md`: adapt. Ported code-ready round verification, child tracking, approval records, and stalled-worker handling. Preserved available host agents, bounded current-session work, and explicit external scheduling.
+- `skills/poteto-mode/playbooks/bug-fix.md`: adapt. Ported the stronger reproduction rule through an available project verification skill.
+- `skills/poteto-mode/playbooks/multi-phase-plan.md`, `skills/poteto-mode/scripts/check-plan.mjs`: adapt. Replaced client subagent, lifecycle-command, control-skill, and temporary-path assumptions with `setup-pstack` roles, a checkable current-session predicate, explicit scheduling, project verification skills, and `$KIROCREW_SCRATCH`.
+- `skills/poteto-mode/playbooks/pause-safely.md`: adapt. Took the parent reduction and moved resume notes to a host-managed scratch directory.
+- `skills/poteto-mode/playbooks/shipping.md`: adapt. Ported build-output patch comparison while replacing hosted-worker, control-skill, and client-watch assumptions with host subagents, project verification, and bounded monitoring.
+- `skills/poteto-mode/SKILL.md`: adapt. Ported full-autonomy decisions and code-ready verification rounds while preserving the Kiro runtime mapping and explicit transcript inputs.
+- `skills/show-me-your-work/SKILL.md`: adapt. Took the prose reduction and replaced undocumented transcript storage with an explicit path, supported export, or conversation digest.
+- `skills/swarm/SKILL.md`: adapt. Ported exact-SHA measurement briefs, report-all findings, and terminal-result validation while preserving host role dispatch and isolated writable paths.

@@ -20,7 +20,7 @@ Copy `references/decision-log-template.tsv` (the header row) to start a clean lo
 - **evidence.** A link or path that proves it: commit SHA, PR number, `file:line`, or an artifact, trace, or screenshot path. Never a paragraph.
 - **result.** The outcome or predicate state: `tests green`, `reverted`, `pixel-diff 0`, `INCONCLUSIVE`, `open`.
 
-An example, plain-spoken so a reviewer reads it at a glance. This is illustration only. Don't copy these rows into a real log.
+An example, plain-spoken so a reviewer reads it at a glance.
 
 ```
 ts	phase	decision	why	evidence	result
@@ -46,13 +46,12 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 ## Rules
 
-- One row is one decision or checkpoint.
 - Append-only. A wrong call gets a new row that supersedes it. Never edit or delete history.
 - Prefer evidence produced by committed scripts over hand-made one-offs (the **encode-lessons-in-structure** principle skill).
 
 ## Audit the log against the transcript
 
-At the end of the run, before handing back, check the log told the truth. Read this run's transcript under the active workspace's `agent-transcripts/` directory (the system prompt names the path). Don't glob across `~/.cursor/projects/*/`. That reads unrelated private chats. Walk the log against what actually happened:
+At the end of the run, before handing back, check that the log told the truth. Use an explicit transcript path, a host-supported export, or a concise digest from the current conversation. Do not scan undocumented client session directories or unrelated projects. If no complete record is available, audit against the visible conversation and mark the evidence gap. Walk the log against what actually happened:
 
 - Every row maps to a real action. Cut invented or aspirational entries.
 - Each row's evidence resolves and shows what the row claims.
