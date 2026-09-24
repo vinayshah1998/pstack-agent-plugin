@@ -29,7 +29,9 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
 
 Run the **arena** skill with the design-sketch task and the Phase A grounding artifacts. Pass `references/runner-prompt.md` as each runner's prompt. Each candidate produces a design package shaped per `references/rationale-template.md`.
 
-Use at least two available agents from the configured `architecture candidates` role. Prefer independent models when the host offers them; otherwise use independent contexts on `auto`.
+Take the runners from the configured `architecture candidates` role instead of the arena's `arena candidates and judge` role. If the role is missing or unavailable, use `auto`. Apply the alias and unavailable-entry rules in the **arena** skill's Frame phase.
+
+Use at least two available agents. Prefer independent models when the host offers them. Otherwise, use independent contexts on `auto`.
 
 Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
 

@@ -9,6 +9,8 @@ Investigate the motivation and intent behind code.
 
 Companion to the `how` skill. `how` answers what the code does and how it works. `why` answers what forces led to its shape.
 
+Each dispatch below names a `setup-pstack` role. Use its configured model or named agent when available. If the role is missing, use `auto`. For `auto` or `inherit-parent`, omit explicit model or agent selection so the host uses the parent. If a configured entry is unavailable, use a confirmed available agent or `auto`, record the fallback, and update the role mapping separately.
+
 ## Operating Posture
 
 Operate as a **careful, cautious, and precise investigator**. Be honest about what you know vs what you're inferring. Read `references/epistemics.md` for the full confidence framework and phrasing guide. The synthesizer must follow it.

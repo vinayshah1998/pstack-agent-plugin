@@ -22,7 +22,7 @@ Run:
 
 [`setup-pstack`](../../skills/setup-pstack/SKILL.md) asks for a reasoning budget, detects Kiro models available to the current account, maps pstack roles to validated model or agent identifiers, and writes `.kiro/steering/pstack-models.md`. The budget maps to Kiro's independent reasoning-effort control, so it does not change model identifiers. Other Agent Plugins clients use their supported model discovery and configuration mechanism.
 
-You only override what you care about. A role with no line in the rule keeps the skill's default. To restore a default, delete that role's line. A rerun of `/setup-pstack` keeps any role whose model differs from the default. A rule written before 0.15.3 may pin the former defaults, so delete those role lines, or delete the file, then run `/setup-pstack` again.
+You only override what you care about. A role with no line in the rule keeps the skill's default. To restore a default, delete that role's line. A rerun of `/setup-pstack` keeps any role whose model differs from the default. A rule written before 0.15.3 pins the old default role assignments, so delete those role lines, or delete the file, then run `/setup-pstack` again.
 
 You might be wondering what happens if you use Auto. Set a role to `inherit-parent` or `auto` and pstack omits the subagent `model` field, so the subagent inherits your parent chat model. Both values mean the same thing, and neither is a model slug. For a panel role the value is a list, and one subagent runs per entry, so the list length sets the panel size. Setup also configures `swarm workers`, the default model for every `/swarm` worker unless a race names a model for each arm.
 

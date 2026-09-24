@@ -9,12 +9,12 @@ description: poteto's agent style for concise, detailed responses, deliberate su
 
 The portable workflow contract takes precedence over client-specific syntax retained in historical playbooks. On Kiro:
 
-- Use Kiro subagents for `Task`, `subagent_type`, or worker instructions.
-- Select available models or named agents through the `setup-pstack` role mapping; ignore hard-coded Cursor model suffixes.
-- Run bounded work in the current session when a playbook mentions nested background or cloud workers.
-- Treat `/loop` and `/goal` as a checkable current-session predicate unless an external scheduler is explicitly configured.
-- Use an available project verification skill instead of `cursor-team-kit` controls.
-- Use `.kiro/skills/`, `.kiro/steering/`, and explicit transcript input instead of Cursor paths or undocumented session storage.
+- Use Kiro subagents for task and worker instructions from parent playbooks.
+- Select available models or named agents through the `setup-pstack` role mapping. Ignore hard-coded identifiers from another client.
+- Run bounded work in the current session when a playbook assumes workers can continue independently.
+- Treat durable iteration or completion tracking as a checkable current-session predicate unless an external scheduler is explicitly configured.
+- Use an available project verification skill instead of client-specific control tools.
+- Use `.kiro/skills/`, `.kiro/steering/`, and explicit transcript input instead of client-private paths or undocumented session storage.
 - Report unavailable durable automation rather than claiming it ran.
 
 ## Non-negotiables
@@ -93,7 +93,7 @@ A request to continue autonomously means keep working within the current session
 
 Use the host's subagent capability for bounded delegation. Prefer a pstack-aware worker when the host exposes one. Otherwise give an available worker the exact skill and file paths it needs. Routed workflow skills such as `how`, `why`, `interrogate`, `reflect`, `swarm`, and `arena` own their worker shape. Respect the routing each skill prescribes.
 
-Use file pointers instead of inlined bulk context. Select models or named agents from the host role mapping written by `setup-pstack`. Use `auto` when no mapping exists. Assign cross-cutting design, concurrency, and subtle algorithm work to the strongest available judgment role. Assign trivial mechanical edits to a fast code role. Role mappings override these defaults. Never pass model identifiers copied from another client. Enforce read-only work with agent permissions and tools, not prose.
+Use file pointers instead of inlined bulk context. Select models or named agents from the host role mapping written by `setup-pstack`. Use `auto` when no mapping exists. Feature and refactoring playbooks use the `feature and refactoring` role. Bug fixes use `bug fix`. Performance work uses `performance investigation`. Assign cross-cutting design, concurrency, subtle algorithm work, and prose to `judgment and prose`. Assign trivial mechanical edits to a fast code role. Role mappings override these defaults. Never pass model identifiers copied from another client. Enforce read-only work with agent permissions and tools, not prose.
 
 Nested background, cloud, and branch-base fields are optional host capabilities. On Kiro, run bounded in-session subagents and wait unless the user explicitly operates separate top-level cloud sessions.
 
@@ -137,7 +137,7 @@ A large or cross-cutting effort (a migration across many call sites, an ambitiou
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
 - **Babysit.** Driving a PR or a stack to merge-ready: conflicts, review threads, CI. `playbooks/babysit.md`.
 - **Shipping.** The half after Babysit. Independently verifying a green stack, then landing the contiguous verified run bottom-up through `gh` by default or Origin when its CLI is available. `playbooks/shipping.md`.
-- **Autonomous run.** A long task to drive to completion without stopping ("run until done", "/loop until X"). `playbooks/autonomous-run.md`.
+- **Autonomous run.** A long task to drive to completion against a bounded predicate ("run until done" or equivalent). `playbooks/autonomous-run.md`.
 - **Orchestrate.** A standing project handed to one coordinator chat: multi-day, many stacked PRs, dozens to hundreds of subagents, minimal human turns ("run this whole project", "own this migration until it lands"). Distinct from Autonomous run, which drives one task to a predicate. Work one agent could finish inside the session's budget routes there, not here, however program-shaped the phrasing sounds. `playbooks/orchestrate.md`.
 - **Autopilot-full.** A queue of independent PRs run to merged with full autonomy. One owner per PR carries build through merge, and the root swarm-verifies each verification round from the code-ready head before its owner merges ("autopilot this queue", "full autopilot", one-owner-per-PR programs). `playbooks/autopilot-full.md`.
 - **Autopilot-stack.** A queue of changes built and verified with full autonomy, delivered as one linear reviewed base-branch stack the operator lands ("autopilot-stack", "stack them, don't ship", "build the stack, I'll land it"). `playbooks/autopilot-stack.md`.

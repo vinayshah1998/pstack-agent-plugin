@@ -7,6 +7,8 @@ description: "Use for \"how does X work\", code walkthroughs before changing som
 
 Explore the codebase to answer "how does X work?" questions. Produce architectural explanations at the level of a senior engineer onboarding onto a subsystem, enough to build a working mental model, not so much that it reads like annotated source code.
 
+Each dispatch below names a `setup-pstack` role. Use its configured model or named agent when available. If the role is missing, use `auto`. For `auto` or `inherit-parent`, omit explicit model or agent selection so the host uses the parent. If a configured entry is unavailable, use a confirmed available agent or `auto`, record the fallback, and update the role mapping separately.
+
 ## Step 1. Assess Complexity
 
 If the scope is ambiguous, state your interpretation and explore. The user can redirect.

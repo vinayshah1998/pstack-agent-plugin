@@ -17,7 +17,7 @@ Write one paragraph describing what the change is trying to accomplish. Derive i
 
 ## 3. Dispatch reviewers
 
-Use the host's parallel subagent capability. Select the configured `adversarial reviewers` role when present and available, otherwise use independent available reviewers. Enforce read-only access through agent tools and permissions.
+Use the host's parallel subagent capability. Run one reviewer per configured `adversarial reviewers` role entry. If the role is missing, use independent available reviewers. Missing model diversity reduces the panel to available agents. Enforce read-only access through agent tools and permissions.
 
 Before dispatching reviewers, state the intent explicitly. Derive this from:
 

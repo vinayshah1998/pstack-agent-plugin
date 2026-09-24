@@ -38,6 +38,8 @@ Use the helper `scripts/log.sh <logfile> <phase> <decision> <why> <evidence> <re
 
 Log decision points and checkpoints, not every action: a fork chosen, a unit completed with its verification result, a pivot or revert with its trigger, a blocker surfaced, a gate fixed. For loop runs, one row per iteration. Skip the trivial and self-evident.
 
+A run is one agent conversation, including its later turns and any summary of it. A pickup, replacement agent, or new chat starts a new run. When a run appends to a log with existing rows, its first row uses phase `start`. A run returning in a later turn reads the log's last rows first. If another run wrote since, it adds another `start` row. Each `start` row names the timestamp range of earlier rows this run did not write. Its evidence names the run, such as its agent ID. Use phase `start` for nothing else.
+
 ## Where it lives
 
 By default the log is a working artifact, not committed. Keep it at `decisions.tsv` in the work dir, or `.audit/<task-slug>.tsv` when several efforts run at once, and leave it out of git.
@@ -51,14 +53,13 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 ## Audit the log against the transcript
 
-At the end of the run, before handing back, check that the log told the truth. Use an explicit transcript path, a host-supported export, or a concise digest from the current conversation. Do not scan undocumented client session directories or unrelated projects. If no complete record is available, audit against the visible conversation and mark the evidence gap. Walk the log against what actually happened:
+At the end of the run, before handing back, check that the log told the truth. Use an explicit transcript path, a host-supported export, or a concise digest from the current conversation. Do not scan undocumented client session directories or unrelated projects. If no complete record is available, audit against the visible conversation and mark the evidence gap. Audit only this run's stretches. A stretch begins at one of this run's `start` rows, or at the first row if this run created the log. It ends at the next `start` row from another run:
 
-- Every row maps to a real action. Cut invented or aspirational entries.
-- Each row's evidence resolves and shows what the row claims.
-- A fork, pivot, or abandoned approach that shaped the work but isn't logged is a gap. Add it.
-- Drop padding.
+- Check that every row maps to a real decision or action.
+- Check that each row's evidence resolves and shows what the row claims.
+- A fork, pivot, or abandoned approach that shaped the work but is not logged is a gap. Add it.
 
-Fix the log, not the story. If the work diverged from what a row claims, the row is wrong.
+Correct the log, not the story. The audit never edits or removes a row, even an invented one. When a row records neither a real decision nor a real action, or its claim or evidence is wrong, add a row that supersedes it with what actually happened and a pointer that resolves. This audit does not check rows outside this run's stretches. If this run's work shows one of those rows is wrong, supersede it like any other wrong call.
 
 ## Cross-model review of the trail
 

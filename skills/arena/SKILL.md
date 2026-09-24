@@ -26,7 +26,7 @@ The N candidates will receive the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
 2. Derive the rubric. State what success looks like for this task, then turn it into three to six concrete, gradeable criteria. The rubric is the picker's tool in Phase D. Candidates only see the task.
-3. Pick the runners. Use the configured `arena candidates and judge` role when present and available, otherwise `auto`. Spawn more candidates when the arena covers multiple design directions. Use independent contexts for repeated entries when the work is generation-bound rather than judgment-sensitive.
+3. Pick the runners. Use the configured `arena candidates and judge` role when present. If the role is missing, use `auto`. For `auto` or `inherit-parent`, omit explicit model or agent selection so the host uses the parent. If a configured entry is unavailable, use a confirmed available agent or `auto`, record the fallback, and update the role mapping separately. Missing model diversity reduces the panel to available agents. Spawn more candidates when the arena covers multiple design directions. Use independent contexts for repeated entries when the work is generation-bound rather than judgment-sensitive.
 4. Assign output paths. Each candidate writes to its own location: a Git worktree where possible, otherwise a host-managed writable scratch directory, per the **separate-before-serializing-shared-state** principle skill.
 
 ## Fan out
@@ -37,7 +37,7 @@ Do not require a client-specific background or cloud field. Kiro runs bounded ca
 
 ## Cross-judge
 
-After candidate outputs are complete, dispatch one read-only judge. Prefer an independent model or agent when available. The judge sees only the rubric and labeled candidate paths, scores each criterion, and recommends a base with rationale. Enforce no-write behavior through the judge's tools and permissions. The judge may run while the parent reads candidates, but never while candidates are still writing.
+After candidate outputs are complete, choose one judge from the configured `arena candidates and judge` role. If the role is missing, use `auto`. Apply the Frame phase's alias and unavailable-entry rules. Prefer a model family or named agent different from the parent when the host exposes that choice. Dispatch one read-only judge. The judge sees only the rubric and labeled candidate paths, scores each criterion, and recommends a base with rationale. Enforce no-write behavior through the judge's tools and permissions. The judge may run while the parent reads candidates, but never while candidates are still writing.
 
 ## Pick
 

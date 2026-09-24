@@ -17,11 +17,15 @@ Use an explicit transcript path, a host-supported export, or a concise digest pr
 
 Run three read-only reviewers concurrently through the host's subagent capability:
 
-- Judgment using `references/judgment-reviewer.md`.
-- Tooling using `references/tooling-reviewer.md`.
-- Divergent analysis using `references/divergent-reviewer.md`.
+| Lens | `setup-pstack` role | Prompt template |
+|---|---|---|
+| Judgment | `judgment and prose` | `references/judgment-reviewer.md` |
+| Tooling | `code exploration` | `references/tooling-reviewer.md` |
+| Divergent analysis | `judgment and prose` | `references/divergent-reviewer.md` |
 
-Dispatch the three reviewer contexts in one concurrent batch. Use the configured `judgment and prose` role when available and `auto` otherwise. Reviewers may use read-only MCP evidence when their agent permissions allow it. Configure actual tools and permissions to retain needed evidence access while withholding file-write tools; a prose `readonly` label is not a security boundary. They return findings only and never edit files.
+Resolve each role through `setup-pstack`. Use `auto` when a mapping is absent. For `auto` or `inherit-parent`, omit explicit model selection so the host uses the parent model. If the host rejects a configured identifier, report the unavailable mapping and use `auto`. Never guess a replacement model identifier.
+
+Dispatch the three reviewer contexts in one concurrent batch. Reviewers may use read-only MCP evidence when their agent permissions allow it. Configure actual tools and permissions to retain needed evidence access while withholding file-write tools. A prose-only read-only label is not a security boundary. They return findings only and never edit files.
 
 The parent supplies the record acquired above. Do not discover client-private transcript directories or scan unrelated workspaces.
 

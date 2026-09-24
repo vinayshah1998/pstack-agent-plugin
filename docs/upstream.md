@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `70b2dc8b4b85c8d5648624ca40d692c421fff32f`
-- Source plugin version: `0.15.3`
+- Source commit: `12d587dfb20741cafc376c42c696c5f6e2a64487`
+- Source plugin version: `0.15.5`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.3`
+- Portable plugin version: `0.15.5`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -97,3 +97,15 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/poteto-mode/SKILL.md`: adapt. Ported full-autonomy decisions and code-ready verification rounds while preserving the Kiro runtime mapping and explicit transcript inputs.
 - `skills/show-me-your-work/SKILL.md`: adapt. Took the prose reduction and replaced undocumented transcript storage with an explicit path, supported export, or conversation digest.
 - `skills/swarm/SKILL.md`: adapt. Ported exact-SHA measurement briefs, report-all findings, and terminal-result validation while preserving host role dispatch and isolated writable paths.
+
+### 70b2dc8 to 12d587d (0.15.3 to 0.15.5)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.5` through the Agent Plugins manifest.
+- `README.md`: skip. The parent removes obsolete client model names from a migration note. The fork's independent README does not carry that note, and the portable migration text is in `docs/guide/01-setup.md`.
+- `docs/guide/01-setup.md`: adapt. Replaced the old-default migration wording without copying client model identifiers.
+- `skills/figure-it-out/SKILL.md`, `skills/interrogate/references/code-quality-review.md`, `skills/interrogate/references/reviewer-prompt.md`, `skills/interrogate/references/rubric.md`, `skills/poteto-mode/playbooks/babysit.md`, `skills/poteto-mode/playbooks/opening-a-pr.md`, `skills/principle-guard-the-context-window/SKILL.md`, `skills/principle-never-block-on-the-human/SKILL.md`, `skills/principle-outcome-oriented-execution/SKILL.md`, `skills/principle-prove-it-works/SKILL.md`, `skills/reflect/references/divergent-reviewer.md`, `skills/reflect/references/judgment-reviewer.md`, `skills/reflect/references/tooling-reviewer.md`: port. Took the parent's prose reductions and workflow corrections.
+- `skills/tdd/SKILL.md` to `skills/pstack-tdd/SKILL.md`: port. Applied the parent reduction through the fork's collision-safe skill name.
+- `skills/architect/SKILL.md`, `skills/arena/SKILL.md`, `skills/how/SKILL.md`, `skills/interrogate/SKILL.md`, `skills/setup-pstack/SKILL.md`, `skills/why/SKILL.md`: adapt. Ported role selection, unavailable-entry handling, and retired-role cleanup through `setup-pstack` role names and available host agents.
+- `skills/poteto-mode/playbooks/autopilot-full.md`, `skills/poteto-mode/playbooks/bug-fix.md`, `skills/poteto-mode/playbooks/feature.md`, `skills/poteto-mode/playbooks/refactoring.md`, `skills/poteto-mode/SKILL.md`: adapt. Took the parent workflow changes while preserving bounded current-session work, explicit external scheduling, project verification skills, and host role routing.
+- `skills/poteto-mode/playbooks/multi-phase-plan.md`, `skills/poteto-mode/scripts/check-plan.mjs`: adapt. The fork already expresses the new `swarm workers` role contract through portable host routing, so no byte change was needed.
+- `skills/reflect/SKILL.md`, `skills/show-me-your-work/SKILL.md`, `skills/swarm/SKILL.md`: adapt. Ported role-specific review dispatch, append-only multi-run audit semantics, and unavailable-agent fallback without client-private transcripts, guessed model identifiers, or workers that implicitly outlive the session.

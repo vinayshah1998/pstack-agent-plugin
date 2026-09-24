@@ -21,7 +21,7 @@ Treat that output as authoritative for the current account. Other clients must u
 
 ## 2. Load current state
 
-On Kiro, prefer project configuration at `.kiro/steering/pstack-models.md`. Use `~/.kiro/steering/pstack-models.md` only when the user explicitly requests a global mapping. Read the existing file when present. Treat its `reasoning budget` and `reasoning effort` lines as the current choice. If they are absent, start with the `unlimited` budget and `max` effort.
+On Kiro, prefer project configuration at `.kiro/steering/pstack-models.md`. Use `~/.kiro/steering/pstack-models.md` only when the user explicitly requests a global mapping. Read the existing file when present. Treat its `reasoning budget` and `reasoning effort` lines as the current choice. If they are absent, start with the `unlimited` budget and `max` effort. Treat any role not listed in step 4 as retired. Drop it from the working map and record it for the role summary in step 4.
 
 ## 3. Choose a reasoning budget
 
@@ -36,7 +36,7 @@ On Kiro, apply the selected effort through the independent `reasoning_effort` di
 
 ## 4. Map roles
 
-Show every role with its current model or named agent, marking any explicit identifier outside the applicable detected set as needing a choice. Ask whether to accept it as-is or change specific roles, offering detected models or agents plus `inherit-parent` and `auto` as options. Both aliases inherit the parent chat model when the host supports that behavior. Prefer structured input over free text when available. For panel roles (`adversarial reviewers`, `arena candidates and judge`, and `architecture candidates`), use a list only when the host can dispatch its entries independently: one subagent runs per entry, so the list length sets fan-out. `swarm workers` is the default role assignment for every worker unless a race assigns another role per arm.
+Show every role with its current model or named agent. Also list each retired role line dropped in step 2. Mark any explicit identifier outside the applicable detected set as needing a choice. Ask whether to accept it as-is or change specific roles, offering detected models or agents plus `inherit-parent` and `auto` as options. Both aliases inherit the parent chat model when the host supports that behavior. Prefer structured input over free text when available. For panel roles (`adversarial reviewers`, `arena candidates and judge`, and `architecture candidates`), use a list only when the host can dispatch its entries independently: one subagent runs per entry, so the list length sets fan-out. `swarm workers` is the default role assignment for every worker unless a race assigns another role per arm.
 
 Map these roles to an available model or named agent:
 
