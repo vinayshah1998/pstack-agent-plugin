@@ -31,7 +31,7 @@ Keep (durable patterns):
 - "closed regex enums for trigger detection are brittle. Prefer schema-validated structures"
 - "skill descriptions front-load trigger keywords (60/40 trigger-vs-action)"
 - "skill-bundled scripts run under bun with own lockfile, not pnpm workspace"
-- "put task triggers in the description; keep host-specific file matching in the host adapter"
+- "host-specific file matching belongs in the host adapter, not portable skill frontmatter"
 
 Output exactly the format below. No preamble, no narration. One sentence per cell. A reviewer should read each Problem/Proposal pair in 5 seconds.
 
@@ -41,7 +41,7 @@ Output exactly the format below. No preamble, no narration. One sentence per cel
 |---|---|---|
 | <failure mode in a skill the parent used> | <change to that skill's body> | <skill path + section> |
 | <skill existed but didn't trigger> | <tune the skill's description so it fires next time> | <tune description: <skill path>> |
-| <new pattern, no existing skill is a real home> | <draft a portable skill using the Authoring or modifying a skill playbook> | <new skill: <kebab-name>> |
+| <new pattern, no existing skill is a real home> | <draft a new portable Agent Skill> | <new skill: <kebab-name>> |
 
 One row per finding. The user approves row by row.
 

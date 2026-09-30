@@ -19,8 +19,8 @@ Scan for:
 
 Findings must point to skills, tools, or MCPs invoked in this transcript. Speculative routings to skills the parent never opened do not count. To check whether a skill was used, scan the transcript for:
 
-- File-read or skill-loading calls against a `SKILL.md` in a documented project, user, or plugin skill directory. On Kiro, project and user skills use `.kiro/skills/` and `~/.kiro/skills/`.
-- Subagent dispatch prompts that name a skill path
+- File-read or skill-loading tool calls against any `SKILL.md` file (workspace `.kiro/skills/`, user-level `~/.kiro/skills/`, or the host's plugin-installed paths)
+- Subagent prompts that name a skill path
 - Tool calls (Shell, Grep, MCP, etc.) that match a skill's documented commands
 
 Two valid finding shapes:

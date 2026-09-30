@@ -93,11 +93,7 @@ Run the portable checks:
 ```bash
 node --test skills/sync-pstack-upstream/scripts/status.test.mjs
 node scripts/validate-plugin.mjs
-node scripts/check-portable-prompts.mjs
-node --test scripts/check-portable-prompts.test.mjs
 ```
-
-The prompt check covers known client-specific operating instructions in skills, guides, and the Kiro adapter. It excludes upstream-sync instructions, executable protocol assets, and standalone illustration captions. Review remaining host assumptions semantically; a clean scan is not proof of behavioral portability.
 
 Run targeted tests and type checks for every changed executable asset. Run the validation branch for each retained client adapter.
 

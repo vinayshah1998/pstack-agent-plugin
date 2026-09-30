@@ -36,7 +36,7 @@ Invoke the `setup-pstack` skill. On Kiro it lists entitled models and writes `.k
 
 ## Benny automations
 
-The portable `triage-issue-reports` and `reproduce-and-fix-issues` skills preserve Benny's workflow and safety contracts. Continuous execution requires a configured event listener or scheduler that starts constrained Kiro sessions and owns delivery, credentials, and retries. Discover integrations exposed by the active runtime before choosing an external service. Workers must not receive Slack-write tools or credentials.
+The portable `triage-issue-reports` and `reproduce-and-fix-issues` skills preserve Benny's workflow and safety contracts. Kiro does not provide a portable equivalent to Cursor's hosted Automations, Routine webhooks, or secret-request cards. To run Benny continuously, supply an external Slack event listener that starts a constrained Kiro session and owns Slack writes, credentials, scheduling, and retries. Workers must not receive Slack-write tools or credentials.
 
 ## Durable loops and cloud work
 

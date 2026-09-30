@@ -51,7 +51,7 @@ Map these roles to an available model or named agent:
 - swarm workers
 - architecture candidates
 
-Use multiple entries only when the host can dispatch them independently. Keep `auto` as a valid fallback meaning the active host chooses. Keep discovered identifiers unchanged. Apply reasoning effort only through a control exposed by the active host; do not infer identifiers from another client's naming scheme.
+Use multiple entries only when the host can dispatch them independently. Keep `auto` as a valid fallback meaning the active host chooses. Do not translate Cursor suffixes such as `-thinking-max`, `-fast-xhigh`, or `-sol-max` into Kiro IDs.
 
 The parent pstack splits work by model strength. Follow the same shape through role assignments:
 
