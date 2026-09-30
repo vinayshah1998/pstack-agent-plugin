@@ -31,6 +31,7 @@ test("rejects client instructions while retaining provenance and protocol assets
       'Dispatch environment: "cloud".',
       "Use subagent_type and run_in_background.",
       "Run create-skill.",
+      "Say deslop it before committing.",
     ]) {
       put("skills/example/SKILL.md", instruction + "\n");
       const result = run();

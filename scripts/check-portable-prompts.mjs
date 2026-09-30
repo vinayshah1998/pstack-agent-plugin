@@ -5,7 +5,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(process.argv[2] ?? join(dirname(fileURLToPath(import.meta.url)), ".."));
-const forbidden = /\bCursor\b|\.cursor(?:\/|\b)|cursor-team-kit|\bsubagent_type\b|\bgeneralPurpose\b|\brun_in_background\b|\bcloud_base_branch\b|\/loop\b|\/goal\b|\/deslop\b|\bcreate-skill\b|\bTask tool\b|environment:\s*["']cloud["']/;
+const forbidden = /\bCursor\b|\.cursor(?:\/|\b)|cursor-team-kit|\bsubagent_type\b|\bgeneralPurpose\b|\brun_in_background\b|\bcloud_base_branch\b|\/loop\b|\/goal\b|\/deslop\b|\bdeslop it\b|\bcreate-skill\b|\bTask tool\b|environment:\s*["']cloud["']/;
 let failures = 0;
 let files = 0;
 

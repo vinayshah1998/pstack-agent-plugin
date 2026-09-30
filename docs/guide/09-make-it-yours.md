@@ -16,7 +16,7 @@ Run it again whenever your habits drift:
 /automate-me update my mode skill with everything since its last edit
 ```
 
-Update mode mines only the history since the skill last changed. It keeps rules you haven't contradicted, revises the ones with new evidence, and adds sections only for genuinely new patterns.
+Update mode uses explicit preferences and any supplied transcript or supported export covering the period since the skill last changed. Without that record, it uses the visible conversation and states the evidence gap. It keeps rules you haven't contradicted, revises the ones with new evidence, and adds sections only for genuinely new patterns.
 
 ## Capture a session's lessons with `/reflect`
 
