@@ -1,16 +1,10 @@
 # Set up pstack
 
-In this page you install the plugin, choose a reasoning budget, pick which models pstack uses, and run your first task. Setup is one command plus a short conversation.
+In this page you install the plugin, choose a reasoning budget, pick which models pstack uses, and run your first task. Use your host's plugin installer, then configure role routing.
 
 ## Install the plugin
 
-In a Cursor chat, run:
-
-```text
-/add-plugin pstack
-```
-
-Cursor confirms the plugin is installed.
+In Kiro IDE, open **Powers**, choose **Add Custom Power**, and import this repository or select its local root. In Kiro CLI v3, run `/powers` to confirm the plugin is installed. See the [Kiro installation guide](../../dev.kiro/README.md) for optional agent profiles. Other Agent Plugins hosts use their documented installer.
 
 ## Pick your budget and models
 

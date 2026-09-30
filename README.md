@@ -44,13 +44,13 @@ Representative skills include:
 - `triage-issue-reports` and `reproduce-and-fix-issues` for the portable Benny workflow contracts.
 - `sync-pstack-upstream` for reviewing and porting parent changes without overwriting portable or Kiro adaptations.
 
-The full guide remains under [`docs/guide/`](./docs/guide/). Client-specific examples in the upstream guide should be interpreted through the Kiro runtime mapping. The pinned source and extraction history are recorded in [`docs/upstream.md`](./docs/upstream.md).
+The full guide remains under [`docs/guide/`](./docs/guide/). The guide uses portable workflows with Kiro-specific installation and configuration examples. The pinned source and extraction history are recorded in [`docs/upstream.md`](./docs/upstream.md).
 
 ## Compatibility boundaries
 
 Agent Plugins 1.0 does not standardize custom agents, model routing, transcript storage, hooks, hosted automations, or durable schedulers. The Kiro adapter provides optional custom-agent templates and explicit fallback rules. See [`docs/compatibility.md`](./docs/compatibility.md).
 
-Cursor Routines, Cursor Automations, `/loop`, `/goal`, nested cloud workers, and `cursor-team-kit` are not represented as portable capabilities. pstack reports those capabilities as unavailable or uses a bounded Kiro fallback instead of claiming parity.
+Durable scheduling, remote workers, session history, and app-control tools depend on the active host. pstack discovers supported capabilities and reports missing ones. A bounded in-session fallback does not claim durable execution.
 
 ## Porting workflow
 
@@ -62,6 +62,8 @@ Run:
 
 ```bash
 node scripts/validate-plugin.mjs
+node scripts/check-portable-prompts.mjs
+node --test scripts/check-portable-prompts.test.mjs skills/sync-pstack-upstream/scripts/status.test.mjs
 kiro-cli agent validate --path dev.kiro/agents/pstack-poteto.json
 kiro-cli agent validate --path dev.kiro/agents/pstack-comment-sicko.json
 ```

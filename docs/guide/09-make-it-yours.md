@@ -8,7 +8,7 @@ poteto-mode is one person's style. The machinery underneath, playbooks, routing,
 /automate-me
 ```
 
-You don't describe your style, because [`/automate-me`](../../skills/automate-me/SKILL.md) reads it out of your history. It mines your recent transcripts in the active workspace for repeated preferences, in how you like replies, delegation, verification, code, prose, and process, then asks you which patterns are really you. It drafts `.cursor/skills/<your-name>-mode/SKILL.md` through Cursor's built-in `create-skill` flow, runs the draft through [`/unslop`](../../skills/unslop/SKILL.md), and opens a PR from a worktree so you review it like any other change.
+[`/automate-me`](../../skills/automate-me/SKILL.md) starts with your explicit preferences and may use a supplied transcript, supported export, or the visible conversation as evidence. It asks you to confirm inferred patterns. On Kiro it drafts `.kiro/skills/<your-name>-mode/SKILL.md`, checks portable frontmatter, and runs the draft through [`/unslop`](../../skills/unslop/SKILL.md). It opens a PR only when you request publication. It does not scan private session storage.
 
 Run it again whenever your habits drift:
 
@@ -36,7 +36,7 @@ When you already know the workflow you want to capture:
 /poteto-mode write a skill for verifying database migrations in this repo
 ```
 
-Writing a skill matches the [Authoring or modifying a skill playbook](../../skills/poteto-mode/playbooks/authoring-a-skill.md), which routes through Cursor's built-in `create-skill`, validates the frontmatter and links, and ships the result through the Opening a PR playbook. Agent-facing prose has a higher bar than human prose, because an unhelpful sentence becomes an instruction some future agent follows. Let the playbook hold that bar rather than writing a `SKILL.md` freehand.
+Writing a skill matches the [Authoring or modifying a skill playbook](../../skills/poteto-mode/playbooks/authoring-a-skill.md). It defines portable frontmatter, checkable steps, and link validation, then uses the Opening a PR playbook when publication is authorized. Agent-facing prose needs clear completion criteria because future agents act on it.
 
 One special case has its own generator. A skill that must drive your app and prove behavior is a verification skill, so use [`/create-verification-skill`](../../skills/create-verification-skill/SKILL.md) and [`/maintain-verification-skill`](../../skills/maintain-verification-skill/SKILL.md) instead. [Verify and ship](./06-verify-and-ship.md#create-a-project-verification-skill) covers both.
 
