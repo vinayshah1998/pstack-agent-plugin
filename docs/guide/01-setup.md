@@ -4,13 +4,7 @@ In this page you install the plugin, choose a reasoning budget, pick which model
 
 ## Install the plugin
 
-In a Cursor chat, run:
-
-```text
-/add-plugin pstack
-```
-
-Cursor confirms the plugin is installed.
+Install this repository through Kiro Powers, then run `/powers` in Kiro CLI v3 to confirm it is installed. Other hosts use their plugin installer. See the [Kiro installation guide](../../dev.kiro/README.md).
 
 ## Pick your budget and models
 
