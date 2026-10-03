@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `12d587dfb20741cafc376c42c696c5f6e2a64487`
-- Source plugin version: `0.15.5`
+- Source commit: `23e4138daa01c42d4969f7a5465f82704e64f798`
+- Source plugin version: `0.15.6`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.5`
+- Portable plugin version: `0.15.6`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -109,3 +109,18 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/poteto-mode/playbooks/autopilot-full.md`, `skills/poteto-mode/playbooks/bug-fix.md`, `skills/poteto-mode/playbooks/feature.md`, `skills/poteto-mode/playbooks/refactoring.md`, `skills/poteto-mode/SKILL.md`: adapt. Took the parent workflow changes while preserving bounded current-session work, explicit external scheduling, project verification skills, and host role routing.
 - `skills/poteto-mode/playbooks/multi-phase-plan.md`, `skills/poteto-mode/scripts/check-plan.mjs`: adapt. The fork already expresses the new `swarm workers` role contract through portable host routing, so no byte change was needed.
 - `skills/reflect/SKILL.md`, `skills/show-me-your-work/SKILL.md`, `skills/swarm/SKILL.md`: adapt. Ported role-specific review dispatch, append-only multi-run audit semantics, and unavailable-agent fallback without client-private transcripts, guessed model identifiers, or workers that implicitly outlive the session.
+
+### 12d587d to 23e4138 (0.15.5 to 0.15.6)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.6` through the Agent Plugins manifest.
+- `README.md`: adapt. Added the new benchmark skill and measurement principle to the independent portable overview.
+- `agents/poteto-agent.md`, `skills/poteto-mode/SKILL.md`: adapt. Ported the fresh-subagent default, plain-language operator reversal, benchmark trigger, and measurement principle through host subagents while preserving Kiro runtime mapping and portable quality gates.
+- `docs/guide/08-principles.md`, `docs/guide/README.md`: port. Added Explain the Number and advanced the documented principle count to 24.
+- `skills/benchmark-checklist/SKILL.md`, `skills/principle-explain-the-number/SKILL.md`: port. Added the new measurement procedure and principle with the Cursor-only frontmatter field stripped.
+- `skills/poteto-mode/playbooks/autopilot-full.md`, `skills/poteto-mode/playbooks/autopilot-stack.md`: adapt. Ported hourly audits, per-unit branch pushes, fresh PR owners, and the new merge-prep checks. Kept available host agents, project verification skills, root-relative paths, and the explicit external-scheduler fallback.
+- `skills/poteto-mode/playbooks/multi-phase-plan.md`, `skills/poteto-mode/scripts/check-plan.mjs`: adapt. Removed the retired goal predicate and changed the audit contract to an hourly externally scheduled tick, with bounded current-session work when no scheduler exists.
+- `skills/poteto-mode/playbooks/hillclimb.md`, `skills/poteto-mode/playbooks/perf-issue.md`: port. Added benchmark-checklist validation for baselines, harnesses, and reported measurements.
+- `skills/poteto-mode/playbooks/opening-a-pr.md`: port. Added host-provided PR tool routing and tightened the PR body contract.
+- `skills/swarm/SKILL.md`: adapt. Ported fresh worker respawn wording while preserving host role routing and bounded in-session dispatch.
+- `skills/technical-writing/SKILL.md`: port. Removed the inline source-attribution lines without changing the writing rules.
+- `skills/typescript-best-practices/references/patterns.md`: port. Replaced the cast-based validation example with schema-owned parsing and an annotated validator example.

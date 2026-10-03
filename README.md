@@ -39,6 +39,7 @@ Representative skills include:
 - `swarm` for partitioned parallel work.
 - `interrogate` for adversarial review.
 - `pstack-tdd`, `blast-radius`, and `no-comments` for implementation quality.
+- `benchmark-checklist` and `principle-explain-the-number` for validating measured performance results.
 - `technical-writing` and `unslop` for prose.
 - `comment-sicko` for independent comment review.
 - `triage-issue-reports` and `reproduce-and-fix-issues` for the portable Benny workflow contracts.

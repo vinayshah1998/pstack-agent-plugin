@@ -36,7 +36,7 @@ A worker that can prove a defect reports `ISSUES` and lists every issue it can p
 
 For partitioned coverage, require a result for every slice. For races, apply the selection rule declared before dispatch. Do not paste raw worker output. Produce a compact result table, one-line evidenced issues, and explicit gaps.
 
-Read the terminal results. Drop a result that does not record the SHAs and method its brief names, and rerun that worker once. After a second miss, record a gap. A gap does not count as a pass.
+Read the terminal results. Drop a result that does not record the SHAs and method its brief names, and respawn that worker once. After a second miss, record a gap. A gap does not count as a pass.
 
 ## Report
 
