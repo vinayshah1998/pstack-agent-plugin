@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `23e4138daa01c42d4969f7a5465f82704e64f798`
-- Source plugin version: `0.15.6`
+- Source commit: `e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a`
+- Source plugin version: `0.15.9`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.6`
+- Portable plugin version: `0.15.9`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -124,3 +124,12 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/swarm/SKILL.md`: adapt. Ported fresh worker respawn wording while preserving host role routing and bounded in-session dispatch.
 - `skills/technical-writing/SKILL.md`: port. Removed the inline source-attribution lines without changing the writing rules.
 - `skills/typescript-best-practices/references/patterns.md`: port. Replaced the cast-based validation example with schema-owned parsing and an annotated validator example.
+
+### 23e4138 to e43c7ee (0.15.6 to 0.15.9)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.9` through the Agent Plugins manifest.
+- `README.md`: adapt. Added `correct` to the independent portable overview instead of copying the parent skill table and client-specific examples.
+- `skills/architect/SKILL.md`: adapt. Ported the agent-contributor design rule while preserving the fork's `architecture candidates` role and host-agent fallback.
+- `skills/architect/references/design-red-flags.md`, `skills/benchmark-checklist/SKILL.md`: port. Added the new agent-safe design checks and updated the performance-playbook reference.
+- `skills/correct/SKILL.md`: port. Added the new correction-enforcement skill with the Cursor-only frontmatter field stripped.
+- `skills/poteto-mode/playbooks/hillclimb.md`, `skills/poteto-mode/playbooks/perf-issue.md`: adapt. Ported the ordered performance mantras while preserving the `performance investigation` role and project verification mapping.
