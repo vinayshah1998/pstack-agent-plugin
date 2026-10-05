@@ -34,6 +34,7 @@ Use the `poteto-mode` skill for non-trivial engineering work. It selects a playb
 Representative skills include:
 
 - `how` for code and architecture walkthroughs.
+- `poteto-help` for installation, setup, and choosing the right skill or playbook.
 - `why` for evidence-backed design history.
 - `architect` and `arena` for competing designs.
 - `swarm` for partitioned parallel work.

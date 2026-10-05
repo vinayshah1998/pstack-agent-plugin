@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a`
-- Source plugin version: `0.15.9`
+- Source commit: `4e5b1cf2ccb0ea3716f08c8ee0a5856b5ab93536`
+- Source plugin version: `0.15.10`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.9`
+- Portable plugin version: `0.15.10`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -133,3 +133,12 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/architect/references/design-red-flags.md`, `skills/benchmark-checklist/SKILL.md`: port. Added the new agent-safe design checks and updated the performance-playbook reference.
 - `skills/correct/SKILL.md`: port. Added the new correction-enforcement skill with the Cursor-only frontmatter field stripped.
 - `skills/poteto-mode/playbooks/hillclimb.md`, `skills/poteto-mode/playbooks/perf-issue.md`: adapt. Ported the ordered performance mantras while preserving the `performance investigation` role and project verification mapping.
+
+### e43c7ee to 4e5b1cf (0.15.9 to 0.15.10)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.10` through the Agent Plugins manifest.
+- `README.md`: adapt. Added `poteto-help` to the independent portable overview instead of copying the parent skill table and Cursor examples.
+- `docs/guide/01-setup.md`, `docs/guide/02-poteto-mode.md`: adapt. Ported the persistent-mode guidance through the optional Kiro `pstack-poteto` agent profile instead of Cursor Custom Modes.
+- `docs/guide/05-build-and-clean.md`: adapt. Kept Kiro's description-driven TypeScript skill loading instead of copying Cursor's explicit invocation requirement. No fork bytes changed.
+- `docs/guide/README.md`: port. Added the new `poteto-help` guide link.
+- `skills/poteto-help/SKILL.md`: adapt. Added the help router with Kiro Power installation, role-map paths, agent-profile persistence, host subagents, collision-safe skill names, and bounded fallbacks for Cursor-only capabilities.
