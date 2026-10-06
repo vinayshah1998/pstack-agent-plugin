@@ -21,7 +21,7 @@ Treat that output as authoritative for the current account. Other clients must u
 
 ## 2. Load current state
 
-On Kiro, prefer project configuration at `.kiro/steering/pstack-models.md`. Use `~/.kiro/steering/pstack-models.md` only when the user explicitly requests a global mapping. Read the existing file when present. Treat its `reasoning budget` and `reasoning effort` lines as the current choice. If they are absent, start with the `unlimited` budget and `max` effort. Treat any role not listed in step 4 as retired. Drop it from the working map and record it for the role summary in step 4.
+On Kiro, prefer project configuration at `.kiro/steering/pstack-models.md`. Use `~/.kiro/steering/pstack-models.md` only when the user explicitly requests a global mapping. Read the existing file when present. Treat its `reasoning budget` and `reasoning effort` lines as the current choice. If they are absent, start with the `large` budget and `xhigh` effort. Treat any role not listed in step 4 as retired. Drop it from the working map and record it for the role summary in step 4.
 
 ## 3. Choose a reasoning budget
 
@@ -77,8 +77,8 @@ inclusion: always
 # `inherit-parent` or `auto`: use the parent chat model. Entries in a panel list each count toward its fan-out.
 # Apply `reasoning effort` through the host dispatch control. Do not add it to model identifiers.
 
-- reasoning budget: unlimited
-- reasoning effort: max
+- reasoning budget: large
+- reasoning effort: xhigh
 - feature and refactoring: auto
 - bug fix: auto
 - performance investigation: auto

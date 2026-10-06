@@ -26,13 +26,18 @@ Check the state that changes the answer, and mention it only when it does:
 - No project `.kiro/steering/pstack-models.md` and no user `~/.kiro/steering/pstack-models.md` means `/setup-pstack` hasn't run for this scope, so each role uses its skill default.
 - No `verify-*` skill or other app harness in the project means agents have no scripted way to drive the app. Mention `/create-verification-skill` when the question is about proving a change works.
 
+When the model rule is missing and it matters, ask whether the user wants to pick a model for each role and a reasoning budget now. It matters when the user is new, the question is about setup or cost, or the answer depends on which models run. Ask at most once per chat. If the need is also unclear, ask both questions together. Offer two choices:
+
+- Now: give them `/setup-pstack` to type, and answer their question too.
+- Later: answer their question, and add one line saying every role keeps its default model until they run `/setup-pstack`.
+
 ## Get set up
 
 1. In Kiro IDE, open **Powers**, choose **Add Custom Power**, and import the repository or its local root.
 2. Run [`/setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model or named agent to each role, and writes a steering file. The map applies to new chats.
 3. Start a real task with `/poteto-mode`, a goal, and a check that can pass or fail.
 
-Installing exposes the skills through Kiro Powers. Nothing runs until the user asks for work. Kiro can select a skill from its description, and the user can name one directly. The [README](../../README.md) and [guide page 1](../../docs/guide/01-setup.md) have the details. Offer to word their first prompt with them.
+Installing exposes the skills through Kiro Powers. Nothing runs until the user asks for work. Kiro can select a skill from its description, and the user can name one directly. The [README](../../README.md) and [guide page 1](../../docs/guide/01-setup.md) have the details. Offer to word their first prompt with them, per [`references/prompting.md`](references/prompting.md).
 
 If cost is the worry, say where the tokens go and how to spend fewer. pstack spends extra tokens on subagents and review panels. Rerun `/setup-pstack` and pick a smaller budget or cheaper models. A role set to `auto` or `inherit-parent` runs on the chat's model, which saves tokens when the chat runs on Auto or a cheaper model. A shorter panel list runs fewer subagents, one for each entry. Save `/poteto-mode` for work that needs rigor.
 
@@ -40,7 +45,7 @@ This standalone port adapts pstack to Agent Plugins 1.0 and Kiro. Workflow skill
 
 ## Start a task with `/poteto-mode`
 
-`/poteto-mode` matches the task to a playbook, copies the playbook's steps into the todo list, and runs the other skills as the steps need them. A step it skips stays in the list as `skip: <reason>`. A good prompt states the goal and how to tell it's done. It doesn't list skills, because a hand-written sequence tends to drop or reorder steps the playbook would keep. [Guide page 2](../../docs/guide/02-poteto-mode.md) has examples.
+`/poteto-mode` matches the task to a playbook, copies the playbook's steps into the todo list, and runs the other skills as the steps need them. A step it skips stays in the list as `skip: <reason>`. A good prompt states the goal and how to tell it's done. It doesn't list skills, because a hand-written sequence tends to drop or reorder steps the playbook would keep. Read [`references/prompting.md`](references/prompting.md) before you help word one. [Guide page 2](../../docs/guide/02-poteto-mode.md) has examples.
 
 To keep `/poteto-mode` active for every turn in a Kiro session, install the optional `pstack-poteto` agent profile and start the session with `kiro-cli chat --v3 --agent pstack-poteto`. Without that profile, invoke `/poteto-mode` for each new task. The [Kiro integration guide](../../dev.kiro/README.md) has the profile installation and validation commands.
 
@@ -61,7 +66,7 @@ The default answer is `/poteto-mode`, which runs most of the others when its ste
 | Settle types and module shape before code that crosses a function boundary | [`/architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`/arena`](../arena/SKILL.md) |
 | Run parallel checks over slices or race workers | [`/swarm`](../swarm/SKILL.md) |
-| Have several models review a diff and try to break it | [`/interrogate`](../interrogate/SKILL.md) |
+| Have different models review a diff and try to break it | [`/interrogate`](../interrogate/SKILL.md) |
 | Fix a bug test-first when a cheap local test exists | [`/pstack-tdd`](../pstack-tdd/SKILL.md) |
 | Apply TypeScript rules to `.ts` or `.tsx` work | [`/typescript-best-practices`](../typescript-best-practices/SKILL.md) |
 | Strip comments before review, using a reviewer that didn't write them | [`/no-comments`](../no-comments/SKILL.md) |
@@ -127,7 +132,7 @@ Principles are one-rule skills that `/poteto-mode` reads and cites in its replie
 | An overnight run moved but finished nothing | Give the run a check that can pass or fail, not a duration. Use a supported scheduler or bounded monitor for unattended work. See [guide page 7](../../docs/guide/07-overnight.md). |
 | The reply claims success from a green build | Ask for the real command, flow, stored value, or profile. That's the prove-it-works principle. |
 
-[Guide page 10](../../docs/guide/10-recipes-and-pitfalls.md) has more pitfalls and the recipes worth copying.
+For a run that drifts, [`references/prompting.md`](references/prompting.md) has one-line steers. [Guide page 10](../../docs/guide/10-recipes-and-pitfalls.md) has more pitfalls and the recipes worth copying.
 
 ## Make pstack my own
 
@@ -140,4 +145,4 @@ Principles are one-rule skills that `/poteto-mode` reads and cites in its replie
 
 ## Reply
 
-Lead with the answer. Give at most one example prompt in a code block, then the link to that file. Keep it short unless the user asked for the whole map.
+Lead with the answer. Give at most one example prompt in a code block, adapted from [`references/recipes.md`](references/recipes.md) when one fits, then the link to that file. Keep it short unless the user asked for the whole map.

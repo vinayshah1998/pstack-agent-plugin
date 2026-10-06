@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `4e5b1cf2ccb0ea3716f08c8ee0a5856b5ab93536`
-- Source plugin version: `0.15.10`
+- Source commit: `df581122cde17e6e27686b5a448bde23e4ad4318`
+- Source plugin version: `0.15.15`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.10`
+- Portable plugin version: `0.15.15`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -142,3 +142,13 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `docs/guide/05-build-and-clean.md`: adapt. Kept Kiro's description-driven TypeScript skill loading instead of copying Cursor's explicit invocation requirement. No fork bytes changed.
 - `docs/guide/README.md`: port. Added the new `poteto-help` guide link.
 - `skills/poteto-help/SKILL.md`: adapt. Added the help router with Kiro Power installation, role-map paths, agent-profile persistence, host subagents, collision-safe skill names, and bounded fallbacks for Cursor-only capabilities.
+
+### 4e5b1cf to df58112 (0.15.10 to 0.15.15)
+
+- `.cursor-plugin/plugin.json`, `README.md`: skip. The parent manifest changes only the Cursor version and the independent fork README does not carry the changed model-default and invocation tables.
+- `docs/guide/01-setup.md`, `docs/guide/02-poteto-mode.md`, `docs/guide/03-understand.md`, `docs/guide/04-design.md`, `docs/guide/05-build-and-clean.md`, `docs/guide/06-verify-and-ship.md`, `docs/guide/07-overnight.md`, `docs/guide/09-make-it-yours.md`, `docs/guide/10-recipes-and-pitfalls.md`, `docs/guide/README.md`: adapt. Ported the new prompting, design, verification, cost, forensics, correction, bot-UI, and unattended-work guidance. Preserved Kiro skill paths, collision-safe skill names, worktree isolation, host scheduling, bounded monitoring, external webhook handling, and explicit cloud-session operation.
+- `docs/guide/08-principles.md`: port. Took the new benchmark and correction guidance unchanged.
+- `skills/architect/references/runner-prompt.md`, `skills/blast-radius/SKILL.md`: port. Took the client-neutral wording changes.
+- `skills/poteto-help/SKILL.md`, `skills/poteto-help/references/prompting.md`, `skills/poteto-help/references/recipes.md`: adapt. Added the prompting and recipe references, stripped the Cursor-only invocation gate, and preserved Kiro skill discovery, role mapping, collision-safe skill names, worktree isolation, and bounded unattended execution.
+- `skills/setup-pstack/SKILL.md`: adapt. Changed the default Kiro reasoning budget from `unlimited` and `max` to `large` and `xhigh` without changing model identifiers.
+- `skills/architect/SKILL.md`, `skills/arena/SKILL.md`, `skills/how/SKILL.md`, `skills/interrogate/SKILL.md`, `skills/poteto-mode/SKILL.md`, `skills/poteto-mode/scripts/orch/orch.test.ts`, `skills/reflect/SKILL.md`, `skills/why/SKILL.md`: adapt. The portable role map already represents the parent's model-panel changes, so these paths require no byte change.
