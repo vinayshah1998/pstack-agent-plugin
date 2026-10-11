@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `df581122cde17e6e27686b5a448bde23e4ad4318`
-- Source plugin version: `0.15.15`
+- Source commit: `978ca6e9c0e012047cd5058b8e829240336e704e`
+- Source plugin version: `0.15.17`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.15`
+- Portable plugin version: `0.15.17`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -152,3 +152,16 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/poteto-help/SKILL.md`, `skills/poteto-help/references/prompting.md`, `skills/poteto-help/references/recipes.md`: adapt. Added the prompting and recipe references, stripped the Cursor-only invocation gate, and preserved Kiro skill discovery, role mapping, collision-safe skill names, worktree isolation, and bounded unattended execution.
 - `skills/setup-pstack/SKILL.md`: adapt. Changed the default Kiro reasoning budget from `unlimited` and `max` to `large` and `xhigh` without changing model identifiers.
 - `skills/architect/SKILL.md`, `skills/arena/SKILL.md`, `skills/how/SKILL.md`, `skills/interrogate/SKILL.md`, `skills/poteto-mode/SKILL.md`, `skills/poteto-mode/scripts/orch/orch.test.ts`, `skills/reflect/SKILL.md`, `skills/why/SKILL.md`: adapt. The portable role map already represents the parent's model-panel changes, so these paths require no byte change.
+
+### df58112 to 978ca6e (0.15.15 to 0.15.17)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.17` through the Agent Plugins manifest.
+- `README.md`: adapt. Added `ketchup` to the independent portable overview instead of copying the parent skill table.
+- `skills/ketchup/SKILL.md`: port. Added the chat catch-up and action-item briefing skill with the Cursor-only frontmatter field stripped.
+- `skills/architect/SKILL.md`, `skills/arena/SKILL.md`, `skills/how/SKILL.md`, `skills/interrogate/SKILL.md`: adapt. Took the prompt reductions while preserving `setup-pstack` roles, host subagent dispatch, permission-enforced read-only behavior, and `$KIROCREW_SCRATCH` output paths.
+- `skills/poteto-help/SKILL.md`: adapt. Added `ketchup` to the router while preserving Kiro installation, role mapping, collision-safe names, and bounded runtime fallbacks.
+- `skills/poteto-mode/SKILL.md`: adapt. Ported the reduced principle and playbook index plus Explain the Number while preserving Kiro autonomy, authoring, verification, scheduling, transcript, and subagent rules.
+- `skills/poteto-mode/playbooks/opening-a-pr.md`: adapt. Ported the shorter PR-writing rules and preserved `/deslop` through an available-host fallback instead of a fixed provider dependency.
+- `skills/reflect/SKILL.md`, `skills/reflect/references/divergent-reviewer.md`, `skills/reflect/references/judgment-reviewer.md`, `skills/reflect/references/tooling-reviewer.md`: adapt. Ported the distilled review flow while keeping explicit transcript inputs, portable role routing, permission-enforced evidence access, and approved external writes.
+- `skills/why/SKILL.md`: adapt. Ported the shorter evidence workflow while preserving active-host MCP discovery, `setup-pstack` roles, and tool-enforced read-only access.
+- `skills/benchmark-checklist/SKILL.md`, `skills/figure-it-out/SKILL.md`, `skills/interrogate/references/reviewer-prompt.md`, `skills/interrogate/references/rubric.md`, `skills/poteto-mode/playbooks/trace-forensics.md`, `skills/principle-build-the-lever/SKILL.md`, `skills/principle-encode-lessons-in-structure/SKILL.md`, `skills/principle-explain-the-number/SKILL.md`, `skills/principle-minimize-reader-load/SKILL.md`, `skills/principle-model-the-domain/SKILL.md`, `skills/principle-never-block-on-the-human/SKILL.md`, `skills/principle-redesign-from-first-principles/SKILL.md`, `skills/principle-subtract-before-you-add/SKILL.md`, `skills/principle-test-behavior-not-implementation/SKILL.md`, `skills/principle-type-system-discipline/SKILL.md`, `skills/reflect/references/synthesizer.md`, `skills/technical-writing/SKILL.md`, `skills/unslop/SKILL.md`, `skills/why/references/epistemics.md`, `skills/why/references/investigator-prompt.md`, `skills/why/references/sources/code-archaeology.md`, `skills/why/references/sources/datadog.md`, `skills/why/references/sources/sentry.md`, `skills/why/references/synthesizer-prompt.md`: port. Took the parent prompt reductions unchanged after removing Cursor-only frontmatter where present.

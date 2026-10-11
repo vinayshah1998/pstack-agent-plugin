@@ -35,6 +35,7 @@ Representative skills include:
 
 - `how` for code and architecture walkthroughs.
 - `poteto-help` for installation, setup, and choosing the right skill or playbook.
+- `ketchup` for a plain-language catch-up and decision brief after autonomous work.
 - `why` for evidence-backed design history.
 - `architect` and `arena` for competing designs.
 - `swarm` for partitioned parallel work.

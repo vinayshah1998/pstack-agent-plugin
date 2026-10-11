@@ -5,85 +5,62 @@ description: Run independent adversarial reviewers over a change, synthesize con
 
 # Interrogate
 
-Run one reviewer per configured `adversarial reviewers` role entry against the same code, intent, and rubric. Model or isolated-context diversity is the adversarial signal; agreement is high-signal, but lone findings still require lead review.
+Run one reviewer per configured `adversarial reviewers` role entry against the same code, intent, and rubric. Model or isolated-context diversity is the adversarial signal. The deliverable is a synthesized verdict. Do not apply changes automatically.
 
-## 1. Determine scope
+## Step 1. Scope
 
-Use caller-supplied files or diff. Otherwise review the current branch against its appropriate base, including the working tree. Gather only the surrounding files required to understand the change.
+Identify what to review from context:
 
-## 2. State intent
+- If the user points at files or a diff, use that scope.
+- On a feature branch, review the full changeset against the appropriate base branch.
+- If the request refers to recent work, gather the relevant files.
 
-Write one paragraph describing what the change is trying to accomplish. Derive it from the request, commits, review description, and code. Ask only when no evidence can resolve a genuine product decision.
+Include only the surrounding files required to understand the change.
 
-## 3. Dispatch reviewers
+## Step 2. Intent
 
-Use the host's parallel subagent capability. Run one reviewer per configured `adversarial reviewers` role entry. If the role is missing, use independent available reviewers. Missing model diversity reduces the panel to available agents. Enforce read-only access through agent tools and permissions.
+Before dispatching reviewers, state the intent in one clear paragraph. Derive it from the user's message, commit messages, the review description when one exists, and the code. Ask only when the evidence cannot resolve a genuine product decision.
 
-Before dispatching reviewers, state the intent explicitly. Derive this from:
+## Step 3. Dispatch reviewers
 
-1. Stated intent.
-2. Diff or scoped files.
-3. `references/rubric.md`.
-4. `references/code-quality-review.md`.
+Use the host's parallel subagent capability. Run one reviewer per configured `adversarial reviewers` role entry. If the role is missing, use independent available reviewers. Missing model diversity reduces the panel to available agents.
 
-Write one clear paragraph. If you're unsure about the intent, ask the user before proceeding.
+For `inherit-parent` or `auto`, omit explicit model or agent selection. If a configured entry is unavailable, use a confirmed suitable reviewer, record the fallback, and update the role mapping separately. Never pass another client's model identifier to the host.
 
-Give every reviewer the same filled template from `references/reviewer-prompt.md`, including the intent, diff or scoped files, rubric, and code-quality lens.
+Enforce read-only access through each reviewer's tools and permissions. Give every reviewer the same filled template from `references/reviewer-prompt.md`, including the intent, diff or scoped files, `references/rubric.md`, and `references/code-quality-review.md`.
 
-Launch all selected reviewers in one concurrent host dispatch when supported, one reviewer per configured role entry. When no configured panel is available, use independent available reviewer contexts.
+## Step 4. Synthesize
 
-If a configured role entry cannot be dispatched, check the host's reported available models or agents, use a confirmed suitable reviewer, record the fallback, and separately update the role mapping. Do not block the review on one unavailable entry. For `inherit-parent` or `auto`, omit an explicit model or agent selection instead of treating the alias as invalid.
+Parse every finding. Merge findings that describe the same issue, and name the reviewers who raised each one. Findings raised independently by two or more reviewers are the highest signal. Read lone findings, but weight them accordingly. Record explicit disagreements.
 
-Record the actual reviewer or model used. An unavailable configured model falls back to an available reviewer; never pass another client's model identifier to the host.
+## Step 5. Lead judgment
 
-## 4. Synthesize
+Read `references/lead-judgment.md`. Put every finding in one bucket, with the reviewers who raised it and a one-line rationale.
 
-As results come back, build a unified picture:
+- **Act on.** A real correctness, security, or maintainability issue that would block a review.
+- **Consider.** A legitimate issue whose benefit may not outweigh the cost now.
+- **Noted.** A valid but non-actionable point for the current scope.
+- **Dismissed.** A wrong, low-value, or context-free finding, with a brief reason.
 
-1. **Parse all findings** from the reviewers.
-2. **Identify consensus**. Findings raised independently by two or more reviewers are highest signal.
-3. **Identify lone-reviewer findings**. Still worth reading, but weight accordingly.
-4. **Deduplicate**. Different reviewers may describe the same issue differently. Merge these and note which reviewers raised them.
-5. **Note disagreements**. If one reviewer flags something and another explicitly says the opposite, that is useful context for the verdict.
-
-## 5. Lead judgment
-
-You are the lead reviewer, a pragmatic senior engineer, not a neutral aggregator.
-
-Read `references/lead-judgment.md` for the full framework.
-
-Categorize every finding using these buckets:
-
-- **Act on.** Real issues affecting correctness, security, or maintainability given the actual goals. These would block a real PR.
-- **Consider.** Legitimate points, but uncertain whether they outweigh the cost of addressing them now. Worth the user's attention.
-- **Noted.** Technically valid but not actionable: context-dependent, premature optimization, or low-impact for the current stage.
-- **Dismissed.** Wrong, nitpicky, or missing context. Briefly explain why.
-
-For each finding, include the reviewers that raised it, the category, and a one-line rationale.
-
-## Output
-
-Present the verdict in this structure:
+## Output format
 
 ### Intent
-> [The stated intent paragraph from Step 2]
+> [The intent from Step 2]
 
 ### Reviewers
-- Reviewer [label]: [actual reviewer or model], [N findings] (one bullet per reviewer)
+- Reviewer [label]: [actual reviewer or model], [N findings]
 
-### Act On
-[Findings that should be addressed. For each: description, which reviewers raised it, why it matters.]
+### Act on
+[Each finding, its reviewers, and why it matters.]
 
 ### Consider
-[Findings worth thinking about. For each: description, which reviewers raised it, tradeoff involved.]
+[Each finding, its reviewers, and the tradeoff.]
 
 ### Noted
-[Valid but low-priority. Brief list.]
+[Brief list.]
 
 ### Dismissed
-[Rejected findings with brief rationale.]
+[Each with a brief rationale.]
 
-### Agreement Map
-[Where reviewers agreed, where they diverged, and what the pattern of agreement or disagreement tells us.]
-
-Do not modify the reviewed code automatically.
+### Agreement map
+[Where reviewers agreed or diverged, and what the pattern means.]
