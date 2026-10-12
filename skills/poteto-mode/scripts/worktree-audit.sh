@@ -1,9 +1,31 @@
 #!/usr/bin/env bash
+# Read-only worktree prune audit. Classifies every git worktree by size, merge
+# state, uncommitted work, remote/PR state, and the most recent chat that
+# operated in it. Emits a table sorted by size with a suggested bucket. Never
+# deletes anything; deletion stays a human-gated step in the playbook.
+#
+# Usage: worktree-audit.sh [-b|--base <ref>] [repo-path]
+#   repo-path defaults to the current repo.
+#   -b sets the ref the MERGED column checks against (e.g. origin/integration).
+#   Without it the base is origin/HEAD, then origin/main, then origin/master.
+#   origin/HEAD is the remote's default branch, not necessarily the branch PRs
+#   merge into; pass -b when they differ.
 set -u
+
+base=""
+while [ $# -gt 0 ]; do
+	case "$1" in
+	-b|--base) [ $# -ge 2 ] || { echo "error: $1 needs a ref" >&2; exit 2; }; base="$2"; shift 2 ;;
+	-h|--help) sed -n '2,/^set -u/p' "$0" | sed '$d; s/^# \{0,1\}//'; exit 0 ;;
+	-*) echo "error: unknown option: $1" >&2; exit 2 ;;
+	*) break ;;
+	esac
+done
 
 repo="${1:-$(git rev-parse --show-toplevel 2>/dev/null)}"
 [ -z "$repo" ] && { echo "not in a git repo; pass a repo path" >&2; exit 1; }
 cd "$repo" || exit 1
+git rev-parse --git-dir >/dev/null 2>&1 || { echo "error: not a git repo: $repo" >&2; exit 1; }
 
 have_jq=true
 if ! command -v jq >/dev/null 2>&1; then
@@ -12,7 +34,22 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 main_wt=$(git worktree list --porcelain | sed -n 's/^worktree //p' | head -1)
-git fetch origin main --quiet 2>/dev/null || echo "warn: could not fetch origin/main; merged column may be stale" >&2
+if [ -z "$base" ]; then
+	for cand in "$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null)" origin/main origin/master; do
+		[ -n "$cand" ] && git rev-parse --verify --quiet "$cand^{commit}" >/dev/null && { base="$cand"; break; }
+	done
+	[ -z "$base" ] && { echo "error: no base ref (origin/HEAD, origin/main, origin/master all missing); pass -b <ref>" >&2; exit 1; }
+	echo "warn: no -b given; MERGED checks against $base" >&2
+fi
+
+# The base drives the merge check. The fetch is best-effort (stale is fine for
+# a first pass) and runs before the check, since -b may name a branch not
+# fetched yet. The explicit refspec creates it even in a single-branch clone.
+case "$base" in
+origin/*) git fetch origin "+refs/heads/${base#origin/}:refs/remotes/$base" --quiet 2>/dev/null \
+	|| echo "warn: could not fetch $base; merged column may be stale" >&2 ;;
+esac
+git rev-parse --verify --quiet "$base^{commit}" >/dev/null 2>&1 || { echo "error: base ref not found: $base" >&2; exit 1; }
 
 prs=$(mktemp)
 trap 'rm -f "$prs"' EXIT INT TERM
@@ -34,6 +71,7 @@ format_day() {
   date -r "$1" '+%Y-%m-%d' 2>/dev/null || date -d "@$1" '+%Y-%m-%d' 2>/dev/null
 }
 
+echo "# base: $base"
 printf "SIZE\tAGE\tMERGED\tDIRTY\tREMOTE\tPR\tLAST_CHAT\tBUCKET\tWORKTREE\n"
 
 git worktree list --porcelain | sed -n 's/^worktree //p' | while IFS= read -r wt; do
@@ -44,7 +82,7 @@ git worktree list --porcelain | sed -n 's/^worktree //p' | while IFS= read -r wt
   head_ts=$(git -C "$wt" log -1 --format='%ct' HEAD 2>/dev/null || echo 0)
   age=$([ "$head_ts" -gt 0 ] 2>/dev/null && echo "$(( (now - head_ts) / 86400 ))d" || echo "?")
 
-  git merge-base --is-ancestor "$head" origin/main 2>/dev/null && merged=YES || merged=no
+  git merge-base --is-ancestor "$head" "$base" 2>/dev/null && merged=YES || merged=no
 
   porcelain=$(git -C "$wt" status --porcelain 2>/dev/null)
   if [ -z "$porcelain" ]; then

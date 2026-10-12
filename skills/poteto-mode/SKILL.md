@@ -93,6 +93,8 @@ A request to continue autonomously means keep working within the current session
 
 ## Subagents
 
+The current chat runs the playbook and owns its task list. Do not spawn a subagent to run the playbook itself.
+
 Use the host's subagent capability for bounded delegation. Prefer a pstack-aware worker when the host exposes one. Otherwise give an available worker the exact skill and file paths it needs. Routed workflow skills such as `how`, `why`, `interrogate`, `reflect`, `swarm`, and `arena` own their worker shape. Respect the routing each skill prescribes.
 
 Use file pointers instead of inlined bulk context. Select models or named agents from the host role mapping written by `setup-pstack`. Use `auto` when no mapping exists. Feature and refactoring playbooks use the `feature and refactoring` role. Bug fixes use `bug fix`. Performance work uses `performance investigation`. Assign cross-cutting design, concurrency, subtle algorithm work, and prose to `judgment and prose`. Assign trivial mechanical edits to a fast code role. Role mappings override these defaults. Never pass model identifiers copied from another client. Enforce read-only work with agent permissions and tools, not prose.

@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `978ca6e9c0e012047cd5058b8e829240336e704e`
-- Source plugin version: `0.15.17`
+- Source commit: `e5a02f8fb0409c2db7eb06eae9078b235a2b5009`
+- Source plugin version: `0.15.19`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.17`
+- Portable plugin version: `0.15.19`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -165,3 +165,17 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/reflect/SKILL.md`, `skills/reflect/references/divergent-reviewer.md`, `skills/reflect/references/judgment-reviewer.md`, `skills/reflect/references/tooling-reviewer.md`: adapt. Ported the distilled review flow while keeping explicit transcript inputs, portable role routing, permission-enforced evidence access, and approved external writes.
 - `skills/why/SKILL.md`: adapt. Ported the shorter evidence workflow while preserving active-host MCP discovery, `setup-pstack` roles, and tool-enforced read-only access.
 - `skills/benchmark-checklist/SKILL.md`, `skills/figure-it-out/SKILL.md`, `skills/interrogate/references/reviewer-prompt.md`, `skills/interrogate/references/rubric.md`, `skills/poteto-mode/playbooks/trace-forensics.md`, `skills/principle-build-the-lever/SKILL.md`, `skills/principle-encode-lessons-in-structure/SKILL.md`, `skills/principle-explain-the-number/SKILL.md`, `skills/principle-minimize-reader-load/SKILL.md`, `skills/principle-model-the-domain/SKILL.md`, `skills/principle-never-block-on-the-human/SKILL.md`, `skills/principle-redesign-from-first-principles/SKILL.md`, `skills/principle-subtract-before-you-add/SKILL.md`, `skills/principle-test-behavior-not-implementation/SKILL.md`, `skills/principle-type-system-discipline/SKILL.md`, `skills/reflect/references/synthesizer.md`, `skills/technical-writing/SKILL.md`, `skills/unslop/SKILL.md`, `skills/why/references/epistemics.md`, `skills/why/references/investigator-prompt.md`, `skills/why/references/sources/code-archaeology.md`, `skills/why/references/sources/datadog.md`, `skills/why/references/sources/sentry.md`, `skills/why/references/synthesizer-prompt.md`: port. Took the parent prompt reductions unchanged after removing Cursor-only frontmatter where present.
+
+### 978ca6e to e5a02f8 (0.15.17 to 0.15.19)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.19` through the Agent Plugins manifest.
+- `agents/comment-sicko.md`, `agents/poteto-agent.md`: adapt. The Kiro adapters already use the collision-safe `pstack-comment-sicko` profile and run `poteto-mode` in the current chat, so the parent agent rename and delegate-only contract require no byte change.
+- `plugin.json`: adapt. The parent adds an Agent Plugins 1.0 manifest that the fork already owns. Mirrored the version while preserving the fork repository metadata and `dev.kiro` extension.
+- `README.md`: adapt. The independent fork README already directs the current chat to run `poteto-mode` and names the Kiro reviewer profile, so the parent client examples require no byte change.
+- `skills/how/references/explorer-prompt.md`, `skills/ketchup/SKILL.md`, `skills/poteto-mode/playbooks/babysit.md`, `skills/principle-encode-lessons-in-structure/SKILL.md`, `skills/principle-exhaust-the-design-space/SKILL.md`, `skills/principle-guard-the-context-window/SKILL.md`, `skills/principle-laziness-protocol/SKILL.md`, `skills/why/references/sources/code-archaeology.md`, `skills/why/references/sources/incident-postmortem.md`, `skills/why/references/sources/sentry.md`, `skills/why/references/sources/slack.md`: port. Took the parent prompt reductions, catch-up visuals, and duplicate-rule removals unchanged.
+- `skills/no-comments/SKILL.md`: adapt. The Kiro workflow already routes through the permission-enforced `pstack-comment-sicko` profile, so the parent agent-id rename requires no byte change.
+- `skills/poteto-mode/playbooks/worktree-cleanup.md`, `skills/poteto-mode/scripts/worktree-audit.sh`: adapt. Ported configurable and default-branch merge checks while preserving optional explicit transcript input, cross-platform timestamps, missing-tool fallbacks, and host-neutral worktree paths.
+- `skills/poteto-mode/scripts/check-plan.mjs`, `skills/poteto-mode/scripts/check-plan.test.ts`, `skills/poteto-mode/scripts/package.json`: adapt. Ported CommonMark-style fence handling and its regression suite, then translated the fixture to the portable `swarm workers` role and hourly audit tick.
+- `skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts`, `skills/poteto-mode/scripts/watch-pr/github.test.ts`, `skills/poteto-mode/scripts/watch-pr/github.ts`, `skills/poteto-mode/scripts/watch-pr/policy.test.ts`, `skills/poteto-mode/scripts/watch-pr/policy.ts`, `skills/poteto-mode/scripts/watch-pr/types.ts`: port. Added review-thread pagination, fail-closed page parsing, cross-page Bugbot counting, and regression coverage.
+- `skills/poteto-mode/SKILL.md`: adapt. Added the parent rule that the current chat owns the playbook while preserving host subagents and `setup-pstack` role routing.
+- `skills/unslop/SKILL.md`: adapt. Removed the redundant always-apply phrase while continuing to strip the Cursor-only frontmatter field.
