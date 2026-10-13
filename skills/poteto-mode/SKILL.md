@@ -17,6 +17,8 @@ The portable workflow contract takes precedence over client-specific syntax reta
 - Use `.kiro/skills/`, `.kiro/steering/`, and explicit transcript input instead of client-private paths or undocumented session storage.
 - Report unavailable durable automation rather than claiming it ran.
 
+Give each Kiro subagent the absolute path to this `SKILL.md` so it can resolve bundled skills from the same installation.
+
 ## Non-negotiables
 
 The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.

@@ -2,10 +2,10 @@
 
 - Source repository: `https://github.com/cursor/plugins`
 - Source directory: `pstack/`
-- Source commit: `e5a02f8fb0409c2db7eb06eae9078b235a2b5009`
-- Source plugin version: `0.15.19`
+- Source commit: `997ffc7fe26bdaa6478a14e7f5b8d5f9ed747102`
+- Source plugin version: `0.15.21`
 - Standalone subtree head before port edits: `29bb0c786e8beaa603893a36584244d7e0143639`
-- Portable plugin version: `0.15.19`
+- Portable plugin version: `0.15.21`
 - License: MIT
 
 The portable plugin version mirrors the source plugin version. It moves only when the parent's `.cursor-plugin/plugin.json` version moves, so port-only changes between parent releases do not bump it.
@@ -179,3 +179,10 @@ Known gap carried forward, not introduced here: eight skill files still name `~/
 - `skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts`, `skills/poteto-mode/scripts/watch-pr/github.test.ts`, `skills/poteto-mode/scripts/watch-pr/github.ts`, `skills/poteto-mode/scripts/watch-pr/policy.test.ts`, `skills/poteto-mode/scripts/watch-pr/policy.ts`, `skills/poteto-mode/scripts/watch-pr/types.ts`: port. Added review-thread pagination, fail-closed page parsing, cross-page Bugbot counting, and regression coverage.
 - `skills/poteto-mode/SKILL.md`: adapt. Added the parent rule that the current chat owns the playbook while preserving host subagents and `setup-pstack` role routing.
 - `skills/unslop/SKILL.md`: adapt. Removed the redundant always-apply phrase while continuing to strip the Cursor-only frontmatter field.
+
+### e5a02f8 to 997ffc7 (0.15.19 to 0.15.21)
+
+- `.cursor-plugin/plugin.json`: skip. The parent change only bumps the Cursor manifest version. The portable `plugin.json` mirrors `0.15.21` through the Agent Plugins manifest.
+- `agents/poteto-agent.md`, `skills/poteto-mode/SKILL.md`: adapt. Ported the absolute skill-path requirement through Kiro subagent prompts while preserving the portable runtime mapping and host role routing.
+- `plugin.json`: adapt. Mirrored the parent version while preserving the fork repository metadata and `dev.kiro` extension.
+- `skills/create-verification-skill/SKILL.md`: adapt. Ported usable-state readiness, missing seed-precondition failures, and stand-in disclosure while preserving `.kiro/skills/` paths.
